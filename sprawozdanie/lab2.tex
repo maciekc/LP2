@@ -41,21 +41,21 @@ Do wyznaczenia zależności generowanego momentu siły przez śmigło odpowiedzi
 		Masa [g]&Prędkość [RPM]&Wsp. PWM [\%]&Moment siły [Nm]\\
 
 		\hline
-		0	&	7.1  & 63 & 0\\
+		0	&	7.1  & 63 & 0.1530\\
 		\hline
-		15	&  6.3 &  51  & 0.0383\\
+		15	&  6.3 &  51  & 0.1148\\
 		\hline
 		30	& 5.2	& 37 &  0.0765\\
 		\hline
-		45	& 3.75 & 32 &  0.1148\\
+		45	& 3.75 & 32 &  0.0383\\
 		\hline	
-		60	& 0	&  0 &  0.1530\\
+		60	& 0	&  0 &  0\\
 		\hline
-		75	& -5.15	& -33  &   0.1913\\
+		75	& -5.15	& -33  &   -0.0383\\
 		\hline
-		90	&	-7.05 & -57 &   0.2296\\
+		90	&	-7.05 & -57 &   -0.0765\\
 		\hline
-		105	&	-8.7 & -85 & 0.2678\\
+		105	&	-8.7 & -85 & -0.1148\\
 		\hline
 	\end{tabular}
 \end{table}
@@ -69,4 +69,28 @@ M(v) = -0.0002v^3 -0.0009 v^2  - 0.0061v + 0.1571
 	\includegraphics[scale = 1]{fig/char_statyczna.eps}
 	\caption		
 	{Charakterystyka statyczna śmigła oś pionowa.}
-\end{figure} 
+\end{figure}
+
+Chcąc znalezć zależność pomiędzy wartościami odczytywanymi z tachopradnicy a rzeczywistą prędkością obrotową śmigła sporządzono charakterystykę statyczną napięcia na tachoprądnicy od jej sygnału wyjściowego. Z racji na liniową zależność, otrzymane dane pomiarowe aproksymowano funkcją liniową w postaci:
+\begin{equation}\label{key}
+U(x) = 0.164 \cdot x + 0.0019
+\end{equation}
+Dane pomiarowe z wyznaczoną funkcją aproksymującą zaprezentowane są na rysunku \ref{skal_pred}.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 1]{fig/skal_predkosci.eps}
+	\caption		
+	{Skalowanie prędkości obrotowej śmigła.}
+	\label{skal_pred}
+\end{figure}
+Finalnie otrzymano następującą zależność na prędkość obrotową wirnika: 
+\begin{equation}\label{key}
+RPM = (0.164 \cdot x + 0.0019 ) * \frac{1}{0.52}
+\end{equation}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 1]{fig/PWM_predkosci.eps}
+	\caption		
+	{Zależność pomiędzy współczynnikiem wypełnienia PWM i prędkością obrotową.}
+	\label{PWM_pred}
+\end{figure}
