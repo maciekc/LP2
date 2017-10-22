@@ -1,5 +1,5 @@
 close all
-save('Azimuth_char_U_V.mat','Azimuth_char');
+load('Azimuth_char_U_V.mat')
 global data T
 data = Azimuth_char; % dane pomiarowe
 T = 6; %czas koncowy symulacji
@@ -10,7 +10,7 @@ T = 6; %czas koncowy symulacji
 X0 = [10 0.3];
 %      K   T     
 options = optimoptions(@lsqnonlin,'Display','iter');
-par = lsqnonlin(@cel, X0, [0,0],[],options)
+par = lsqnonlin(@cel, X0, [0,0],[],options);
 
 %%
 fs=1e3;
@@ -38,4 +38,4 @@ grid on;
 axis([0 7 0 0.45])
 % legend('Sterowanie [V]','Prêdkoœæ [RPM]');
 xlabel('czas [s]')
-print('../../sprawozdanie/fig/Azimuth_iden', '-depsc')
+% print('../../sprawozdanie/fig/Azimuth_iden', '-depsc')

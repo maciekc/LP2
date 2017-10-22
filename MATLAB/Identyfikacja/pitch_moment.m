@@ -8,7 +8,7 @@ moment = -masa.*0.001*0.26*9.81;
 moment = moment - moment(5);
 x = -10:0.01:8;
 
-wsp = polyfit(v, moment, 3);
+wsp = polyfit(v, moment, 5);
 y = polyval(wsp, x);
 figure(1)
 plot(v,moment, '*')
@@ -20,14 +20,11 @@ plot(x, y, 'g')
 legend('pomiary', 'aproksymacja')
 print('../../sprawozdanie/fig/char_statyczna', '-depsc')
 
-figure(2)
-plot(pwm,v)
-
 %%
 vp = [-8.6 -7.3 -5.7 -3.6 3.58 5.7 7.2 8.3];
 napiecie = [-1.41 -1.2 -0.933 -0.59 0.585 0.936 1.175 1.383];
 
-figure(3)
+figure(2)
 plot(vp, napiecie, 'g*')
 ylabel('Napiêcie [V]')
 wsp2 = polyfit(vp,napiecie , 1);
@@ -40,7 +37,7 @@ print('../../sprawozdanie/fig/skal_predkosci', '-depsc')
 %%
 pred = [-3158 -2890 -2680 -2460 -2270 -2030 -1770 -1470 -1120 -670 0 670 1100 1440 1730 1990 2220 2420 2560 2720 2860];
 PWM = -1:0.1:1;
-figure(4)
+figure(3)
 plot(pred, PWM, '*')
 grid on
 xlabel('Prêkdoœæ [RPM]')
