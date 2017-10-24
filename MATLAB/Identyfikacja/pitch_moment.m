@@ -18,7 +18,7 @@ grid on
 hold on 
 plot(x, y, 'g')
 legend('pomiary', 'aproksymacja')
-print('../../sprawozdanie/fig/char_statyczna', '-depsc')
+% print('../../sprawozdanie/fig/char_statyczna', '-depsc')
 
 figure(2)
 plot(pwm,v)
@@ -31,18 +31,16 @@ figure(3)
 plot(vp, napiecie, 'g*')
 ylabel('Napiêcie [V]')
 wsp2 = polyfit(vp,napiecie , 1);
-hold on
-grid on
+hold on 
 plot(vp, polyval(wsp2, vp), 'r')
 xlabel('Odczyt z ADC')
-% title('Skalowanie prêdkoœci')
-print('../../sprawozdanie/fig/skal_predkosci', '-depsc')
+title('Skalowanie prêdkoœci')
+
 %%
 pred = [-3158 -2890 -2680 -2460 -2270 -2030 -1770 -1470 -1120 -670 0 670 1100 1440 1730 1990 2220 2420 2560 2720 2860];
 PWM = -1:0.1:1;
 figure(4)
-plot(pred, PWM, '*')
+plot(pred, PWM)
 grid on
-xlabel('Prêkdoœæ [RPM]')
+xlabel('Prêkdoœæ [RMS]')
 ylabel('Wsp. PWM')
-print('../../sprawozdanie/fig/PWM_predkosci', '-depsc')
