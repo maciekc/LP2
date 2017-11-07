@@ -10,7 +10,7 @@ T = 6; %czas koncowy symulacji
 X0 = [10 0.3];
 %      K   T     
 options = optimoptions(@lsqnonlin,'Display','iter');
-par = lsqnonlin(@cel, X0, [0,0],[],options)
+par = lsqnonlin(@cel, X0, [0,0],[],options);
 
 %%
 fs=1e3;
