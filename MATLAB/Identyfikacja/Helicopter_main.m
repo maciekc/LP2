@@ -111,17 +111,18 @@ ylabel('Prêdkoœæ k¹towa [RPS]');
 legend('Pomiary','Aproksymacja');
 
 %% Moment si³y noœnej od prêdkoœci œmig³a bocznego
-load(p02.mat);
-signals=[v,azimuth];
+load('kat_-02.mat');
+load('pred_-02.mat');
+signals=[v,k];
 wsp_M_h = ones(1,5);
 f_h=2e-6;
 decision=[f_h wsp_M_h];
 options = optimoptions(@lsqnonlin,'Display','iter');
 cel=@(param) step_azimuth(param, signals);
-decision = lsqnonlin(cel, decision, [0;-1e3;-1e3;-1e3;-1e3;-1e3],[],options);
+decision = lsqnonlin(cel, decision, [0.01;-1e3;-1e3;-1e3;-1e3;-1e3],[],options);
 
 t_vect=(0:(length(signals)-1))/fs;
-[t,x]=ode45(@(t,x) (-param(1)*x(2)+polyval(param(2:end),w/60)),t_vect,0);
+[t,x]=ode45(@(t,x) ([x(2);-decision(1)*x(2)+polyval(decision(2:end),signals(floor(t*fs)+1,1)/60)]),t_vect,[0;0]);
 figure(6);
 plot(t_vect, signals(:,2), 'b', t, x(:,2), 'r');
 grid on;
