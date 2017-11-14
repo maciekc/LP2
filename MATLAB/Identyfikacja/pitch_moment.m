@@ -28,6 +28,7 @@ figure(2)
 plot(vp, napiecie, 'g*')
 ylabel('Napiêcie [V]')
 wsp2 = polyfit(vp,napiecie , 1);
+
 hold on 
 plot(vp, polyval(wsp2, vp), 'r')
 xlabel('Odczyt z ADC')

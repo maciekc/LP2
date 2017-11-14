@@ -15,16 +15,22 @@ fs=1e3;
 % 2. Dopasowywania wielomianu do punktów pomiarowych.
 % 3. Dobieranie paramterów funkcj¹ lsqnonlin.
 
+%% Przeliczenie prêdkoœci
+vp = [-8.6 -7.3 -5.7 -3.6 3.58 5.7 7.2 8.3];
+napiecie = [-1.41 -1.2 -0.933 -0.59 0.585 0.936 1.175 1.383];
+wsp_V = polyfit(vp, napiecie, 1);
+
 %% Moment si³y noœnej od prêdkoœci œmig³a
 pwm = [0.63 0.51 0.37 0.23 0 -0.35 -0.565 -0.85];
-v = [7.1 6.3 5.2 3.75 0 -5.15 -7.05 -8.7];
-masa = [0 15 30 45 60 75 90 105]; 
+v = polyval(wsp_V,[7.1 6.3 5.2 3.75 0 -5.15 -7.05 -8.7])*1000/0.52;
+masa = [0 15 30 45 60 75 90 105];
 moment = -masa.*0.001*0.26*9.81;
 moment = moment - moment(5);
+a=moment(pwm==0);
 
-wsp_M_V = polyfit(v, moment, 5);
-poly_V = -10:0.01:8;
-poly_M = polyval(wsp_M_V, poly_V);
+wsp_M_V = polyfit(v/60, moment, 5);
+poly_V = -3e3:3e3;
+poly_M = polyval(wsp_M_V, poly_V/60);
 figure(1);
 plot(v, moment, '*', poly_V, poly_M, 'g');
 xlabel('Prêkoœæ [RPM]');
@@ -46,21 +52,16 @@ xlabel('Prêkdoœæ [RPS]');
 ylabel('Wsp. PWM');
 legend('Pomiary','Aproksymacja');
 
-%% Przeliczenie prêdkoœci
-vp = [-8.6 -7.3 -5.7 -3.6 3.58 5.7 7.2 8.3];
-napiecie = [-1.41 -1.2 -0.933 -0.59 0.585 0.936 1.175 1.383];
-wsp_V = polyfit(vp,napiecie , 1);
-
 %% Dobranie parametrów modelu uk³adu silnik DC - œmig³o
 load('Pitch_char_U_V.mat');
-Iz = 1e-4;
+I_v = 1e-4;
 Pitch_char(:,2)=1000/0.52*polyval(wsp_V,Pitch_char(:,2));
 options = optimoptions(@lsqnonlin,'Display','iter');
 cel=@(param) step_smiglo(param, wsp_U_V, Pitch_char);
-Iz = lsqnonlin(cel, Iz, 0,[],options);
+I_v = lsqnonlin(cel, I_v, 0,[],options);
 
 t_vect=(0:(length(Pitch_char)-1))/fs;
-[t,w]=ode45(@(t,w) (Pitch_char(floor(t*fs)+1,1)-polyval(wsp_U_V,w/60))/Iz,t_vect,0);
+[t,w]=ode45(@(t,w) (Pitch_char(floor(t*fs)+1,1)-polyval(wsp_U_V,w/60))/I_v,t_vect,0);
 figure(3);
 plot(t_vect, Pitch_char(:,2), 'b', t, w, 'r');
 grid on;
@@ -111,21 +112,58 @@ ylabel('Prêdkoœæ k¹towa [RPS]');
 legend('Pomiary','Aproksymacja');
 
 %% Moment si³y noœnej od prêdkoœci œmig³a bocznego
-load('kat_-02.mat');
-load('pred_-02.mat');
+load('kat_02.mat');
+load('pred_02.mat');
 signals=[v,k];
-wsp_M_h = ones(1,5);
-f_h=2e-6;
+poly_rank=2;
+wsp_M_h = ones(1,poly_rank)*1e-3;
+f_h = 1e-4;
 decision=[f_h wsp_M_h];
 options = optimoptions(@lsqnonlin,'Display','iter');
 cel=@(param) step_azimuth(param, signals);
-decision = lsqnonlin(cel, decision, [0.01;-1e3;-1e3;-1e3;-1e3;-1e3],[],options);
+decision = lsqnonlin(cel, decision, [0;-1e3*(ones(poly_rank,1))],[],options);
 
 t_vect=(0:(length(signals)-1))/fs;
 [t,x]=ode45(@(t,x) ([x(2);-decision(1)*x(2)+polyval(decision(2:end),signals(floor(t*fs)+1,1)/60)]),t_vect,[0;0]);
 figure(6);
-plot(t_vect, signals(:,2), 'b', t, x(:,2), 'r');
+plot(t_vect, signals(:,2), 'b', t, x(:,1), 'r');
 grid on;
 xlabel('Czas [s]');
 ylabel('Po³o¿enie k¹towe [RPS]');
 legend('Pomiary','Aproksymacja');
+
+%% Moment si³y noœnej od prêdkoœci œmig³a bocznego - total
+signals = cell(0);
+load('kat_02.mat');
+load('pred_02.mat');
+signals{1} = [v,k];
+load('kat_04.mat');
+load('pred_04.mat');
+signals{2} = [v,k];
+load('kat_06.mat');
+load('pred_06.mat');
+signals{3} = [v,k];
+load('kat_-02.mat');
+load('pred_-02.mat');
+signals{4} = [v,k];
+load('kat_-04.mat');
+load('pred_-04.mat');
+signals{5} = [v,k];
+load('kat_-06.mat');
+load('pred_-06.mat');
+signals{6}=[v,k];
+poly_rank = 7;
+wsp_M_h = ones(1,poly_rank)*1e-3;
+f_h = 1e-4;
+decision=[f_h wsp_M_h];
+options = optimoptions(@lsqnonlin,'Display','iter');
+cel=@(param) step_azimuth_total(param, signals);
+decision = lsqnonlin(cel, decision, [0;-1e3*(ones(poly_rank,1))],[],options);
+
+%% Moment bezw³adnoœci dla osi poziomej
+alpha_0 = -28.13;
+psi = 0.0125;
+K = 1;
+T = 0.4495;
+J_v = 0;
+f_v = 0;
