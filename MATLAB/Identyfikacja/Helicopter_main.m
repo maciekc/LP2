@@ -43,7 +43,7 @@ pred = [-3158 -2890 -2680 -2460 -2270 -2030 -1770 -1470 -1120 -670 0 670 1100 14
 PWM = -1:0.1:1;
 
 poly_V = linspace(pred(1),pred(end),1e3);
-wsp_U_V=polyfit(pred,PWM,5);
+wsp_U_V = polyfit(pred,PWM,5);
 poly_PWM = polyval(wsp_U_V, poly_V);
 figure(2);
 plot(pred, PWM, '*', poly_V, poly_PWM, 'g');
@@ -114,17 +114,19 @@ legend('Pomiary','Aproksymacja');
 %% Moment si³y noœnej od prêdkoœci œmig³a bocznego
 load('kat_02.mat');
 load('pred_02.mat');
-signals=[v,k];
-poly_rank=2;
-wsp_M_h = ones(1,poly_rank)*1e-3;
+signals = [v,k];
+poly_rank = 2;
+wsp_M_H = ones(1,poly_rank)*1e-3;
 f_h = 1e-4;
-decision=[f_h wsp_M_h];
+decision=[f_h wsp_M_H];
 options = optimoptions(@lsqnonlin,'Display','iter');
 cel=@(param) step_azimuth(param, signals);
 decision = lsqnonlin(cel, decision, [0;-1e3*(ones(poly_rank,1))],[],options);
+f_h = decision(1);
+wsp_M_H = decision(2:end);
 
-t_vect=(0:(length(signals)-1))/fs;
-[t,x]=ode45(@(t,x) ([x(2);-decision(1)*x(2)+polyval(decision(2:end),signals(floor(t*fs)+1,1)/60)]),t_vect,[0;0]);
+t_vect = (0:(length(signals)-1))/fs;
+[t,x] = ode45(@(t,x) ([x(2);-decision(1)*x(2)+polyval(decision(2:end),signals(floor(t*fs)+1,1)/60)]),t_vect,[0;0]);
 figure(6);
 plot(t_vect, signals(:,2), 'b', t, x(:,1), 'r');
 grid on;
@@ -183,3 +185,26 @@ grid on;
 xlabel('Czas [s]');
 ylabel('Po³o¿enie k¹towe');
 legend('Pomiary','Aproksymacja');
+
+%% Wyliczenie punktu równowagi
+lin_alpha_v = 0;
+lin_velocity_v = 0;
+lin_w_v = roots(wsp_M_V+[zeros(1,length(wsp_M_V)-1) a*sin(lin_alpha_v-alpha_0)]);
+lin_w_v = lin_w_v(lin_w_v>-50 & lin_w_v<50 & imag(lin_w_v)==0);
+lin_u_v = polyval(wsp_U_V, lin_w_v);
+
+%% Linearyzacja w punkcie równowagi
+lin_M_V_diff = polyder(wsp_M_V);
+lin_U_V_diff = polyder(wsp_U_V);
+lin_A = [0 1 0;...
+    a*cos(lin_alpha_v-alpha_0) -f_v/J_v polyval(lin_M_V_diff, lin_w_v);...
+    0 0 -polyval(lin_U_V_diff, lin_w_v)/J_v];
+lin_B = [0; 0; 1/J_v];
+lin_C = eye(3);
+lin_D = zeros(3,1);
+
+%% Regulator LQ dla osi poziomej
+Q = [1 0 0;0 0 0;0 0 0];
+R = 0.01;
+N = zeros(3,1);
+K_lqr = lqr(lin_A, lin_B, Q, R, N);
