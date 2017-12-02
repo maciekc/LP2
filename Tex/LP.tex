@@ -480,8 +480,42 @@ A więc:
 0 &= -\frac{f_v}{J_v}x_2+\frac{a}{J_v}\sin (\alpha_v-\alpha_{v0})+\frac{M_v(\omega_v)}{J_v}\\
 0 &= \frac{u_v}{I_v}-\frac{H_v^{-1}(\omega_v)}{I_v}
 \end{aligned}
-\label{punkt_rownowagi}
+\label{eq:equilibrium_point}
 \end{equation}
+Z powyższych równań wynika, że w każdym punkcie równowagi prędkość kątowa układu \(x_2\) jest równa \(0\). Natomiast zmienne stanu \(x_1\) i \(x_2\) oraz sterowanie tworzą w przestrzeni trójwymiarowej pewien zbiór punktów równowagi. Dla przyjętych wartości \(x_1\) (położenie kątowe) wyznaczono takie wartości \(x_3\) i \(u\), że układ znajduje się w punkcie równowagi. W tym celu konieczne jest rozwiązanie równania \eqref{eq:equilibrium_x3} ze względu na \(x_3\).
+\begin{equation}
+M_v(\omega_v)+a\sin (\alpha_v-\alpha_{v0}) = 0
+\label{eq:equilibrium_x3}
+\end{equation}
+Warto zauważyć, że w rozpatrywanym zakresie prędkości kątowej silnika funkcja \(M_v(\omega_v)\) jest ściśle monotonicznie rosnąca. Można to zauważyć na wykresie \ref{fig:char_M_V}. W związku z tym równanie \eqref{eq:equilibrium_x3} ma tylko jedno rozwiązanie. Sterowanie \(u\) w punkcie równowagi należy wyliczyć ze wzoru \eqref{eq:equilibrium_u}.
+\begin{equation}
+u_v = H_v^{-1}(\omega_v)
+\label{eq:equilibrium_u}
+\end{equation}
+Wykres \ref{fig:e_p_3d} przedstawia wyznaczony zbiór punktów równowagi w przestrzeni trójwymiarowej.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/e_p_3d.eps}
+	\caption{Zbiór punktów równowagi układu.}
+	\label{fig:e_p_3d}
+\end{figure}
+
+Rysunek \ref{fig:e_p_x1_x3} wyraża zależność prędkości kątowej silnika od położenia układu w punkcie równowagi, natomiast rysunek \ref{fig:e_p_x1_u} zależność współczynnika wypełnienia PWM od położenia układu w punkcie równowagi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/e_p_x1_x3.eps}
+	\caption{Zależność prędkości silnika od położenia układu w punkcie równowagi.}
+	\label{fig:e_p_x1_x3}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/e_p_x1_u.eps}
+	\caption{Zależność sterowania od położenia układu w punkcie równowagi.}
+	\label{fig:e_p_x1_u}
+\end{figure}
 
 %\section{Model zlinearyzowany}
 %\label{sec:modelzlinearyzowany}
