@@ -40,6 +40,7 @@
 \usepackage{multirow}
 \usepackage{enumerate}%[I], numerki, [(a)]
 \usepackage{float}
+\usepackage{placeins}
 
 %Figure numbering
 \usepackage{chngcntr}
@@ -155,6 +156,15 @@ Natomiast dla równań \eqref{eq:model_horizontal} mają następującą postać:
 \end{aligned}
 \end{equation}
 
+Opisany w tym rozdziale model dla osi poziomej został zaimplementowany w programie \textit{Simulink}. Schemat blokowy realizujący ten model przedstawiono na rysunku \ref{fig:Model_vertical}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5.9in]{Figures/Model_vertical.png}
+	\caption{Model układu dla osi poziomej w programie \textit{Simulink}.}
+	\label{fig:Model_vertical}
+\end{figure}
+
 \section{Identyfikacja}
 \label{sec:identyfikacja}
 Zagadnienie identyfikacji modeli nieliniowych jest bardzo często zagadnieniem problematycznym. Dla modeli liniowych wystarczy zazwyczaj wykorzystać metodę najmniejszych kwadratów. Dla modelu nieliniowego metoda ta daje na ogół obciążoną estymację parametrów, a rozwiązanie zadania może być niejednoznaczne. Oprócz tego zadanie to jest skomplikowane pod względem numerycznym, gdyż rozwiązywania nieliniowych równań różniczkowych jest złożone obliczeniowo. Aby ułatwić identyfikację należy zdekomponować ją na znacznie prostsze zadania. Dzięki temu identyfikacja modelu nieliniowego sprowadza się do wykonania kilkudziesięciu pomiarów oraz odpowiednich przekształceń algebraicznych.
@@ -162,7 +172,7 @@ Zagadnienie identyfikacji modeli nieliniowych jest bardzo często zagadnieniem p
 \subsection{Prędkość kątowa z prądnicy tachometrycznej}
 W pierwszej kolejności konieczne było przeliczenie napięcia z prądnicy tachometrycznej na prędkość kątową w radianach na sekundę. W tym celu wykorzystano dostępną dokumentację oraz zmierzone dane. Dla danej wartości współczynnika wypełnienia PWM odczytywano multimetrem napięcie na wyprowadzeniach z prądnicy tachometrycznej oraz wartość wyświetlaną w \textit{Simulink}. W dokumentacji sprawdzono jak należy przeliczyć napięcie prądnicy tachometrycznej na prędkość kątową. Punkty pomiarowe następnie aproksymowano wielomianem pierwszego stopnia. Wyniki zostały zaprezentowane na rysunku \ref{fig:char_V_U}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/char_V_U.eps}
 	\caption{Charakterystyka statyczna prędkości kątowej od odczytu z czujnika.}
@@ -242,7 +252,7 @@ M_{zew} &= lmg\cos(\alpha_v)
 \paragraph*{}
 Zależność momentu siły nośnej od prędkości kątowej postanowiono aproksymować wielomianem piątego stopnia. Na wykresie \ref{fig:char_M_V} kolorem czerwonym zaznaczone zostały wyznaczone punkty pomiarowe, natomiast kolorem niebieskim funkcja aproksymująca (wielomian).
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/char_M_V.eps}
 	\caption{Charakterystyka statyczna momentu siły nośnej od prędkości obrotowej silnika.}
@@ -274,7 +284,7 @@ H_v^{-1}(\omega_v) = u_v
 \end{equation}
 Zależność oporów ruchu śmigła od prędkości kątowej postanowiono aproksymować wielomianem piątego stopnia. Na wykresie \ref{fig:char_U_V} kolorem czerwonym zaznaczone zostały wyznaczone punkty pomiarowe, natomiast kolorem niebieskim funkcja aproksymująca (wielomian).
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/char_U_V.eps}
 	\caption{Charakterystyka statyczna oporów ruchu śmigła od prędkości obrotowej silnika.}
@@ -537,7 +547,7 @@ y &= Cx+Du
 \(C\) jest macierzą wyjścia,\newline
 \(D\) jest macierzą transmisyjną.
 
-Aby znaleźć macierze A,B,C,D należy wyliczyć pochodne prawych stron układu równań \eqref{eq:ss_vertical} po każdej zmiennej stanu oraz sterowaniu. Po wykonaniu odpowiednich obliczeń otrzymano model zlinearyzowany opisany macierzami \eqref{eq:linear_ABCD}.
+Aby znaleźć macierze A,B,C,D należy wyliczyć pochodne prawych stron układu równań \eqref{eq:ss_vertical} po każdej zmiennej stanu oraz sterowaniu. Należy również zauważyć, że jedyną wielkością, którą można było mierzyć w tym układzie jest nachylenie (\(\alpha_v\)). Spowodowane było to awarią prądnicy tachometrycznej, przez co niemożliwy był pomiar prędkości kątowej silnika. Po wykonaniu odpowiednich obliczeń otrzymano model zlinearyzowany opisany macierzami \eqref{eq:linear_ABCD}.
 \begin{equation}
 \begin{aligned}
 A &=
@@ -556,13 +566,128 @@ C &=
 	\begin{bmatrix}
 	1 & 0 & 0
 	\end{bmatrix}\\
-D &= 0	
+D &= 0
 \end{aligned}
 \label{eq:linear_ABCD}
 \end{equation}
+Należy zauważyć, że dla modelu zlinearyzowanego wektor stanu oraz sterowanie mierzone są względem punktu równowagi, w którym model ten został wyliczony. Postanowiono zlinearyzować układ dla kąta \(\alpha_v=0\). Na podstawie wzorów \eqref{eq:equilibrium_point} wyliczono pozostałe wielkości w punkcie równowagi. Zostały one zapisane w równaniu \eqref{eq:equilibrium_point_val}.
+\begin{equation}
+\begin{aligned}
+x_1 &= 0\\
+x_2 &= 0\\
+x_3 &= 235.9044\\
+u &= 0.6252
+\end{aligned}
+\label{eq:equilibrium_point_val}
+\end{equation}
+Wartości macierzy modelu zlinearyzowanego w tym punkcie zapisano w równaniu \eqref{eq:linear_ABCD_val}.
+\begin{equation}
+\begin{aligned}
+A &=
+	\begin{bmatrix}
+	0 & 1 & 0\\
+	-4.4005 & -0.0695 & 0.0244\\
+	0 & 0 & -2.8870
+	\end{bmatrix}\\
+B &=
+	\begin{bmatrix}
+	0\\
+	0\\
+	577.5771
+	\end{bmatrix}\\
+C &=
+	\begin{bmatrix}
+	1 & 0 & 0
+	\end{bmatrix}\\
+D &= 0
+\end{aligned}
+\label{eq:linear_ABCD_val}
+\end{equation} 
+Dla równania stanu opisanego powyższymi macierzami postanowiono sprawdzić sterowalność i obserwowalność układu. W tym celu wyliczono macierze sterowalności i obserwowalności. Macierze te podane są w równaniu \eqref{eq:ctrb_obsv}.
+\begin{equation}
+\begin{aligned}
+Q &=
+	\begin{bmatrix}
+	0 & 0 & 14.1\\
+	0 & 14.1 & -41.7\\
+	577.6 & -1667.5 & 4814.1
+	\end{bmatrix}\\
+P &=
+	\begin{bmatrix}
+	1 & 0 & 0\\
+	0 & 1 & 0\\
+	-4.4005 & -0.0695 & 0.0244
+	\end{bmatrix}
+\end{aligned}
+\label{eq:ctrb_obsv}
+\end{equation}
+Rząd obu powyższych macierzy wynosi 3. Stąd wnioskujemy, że układ ten jest sterowalny i obserwowalny. Możliwe jest więc zaprojektowanie obserwatora odtwarzającego stan układu oraz regulatora proporcjonalnego do stanu, który będzie stabilizował ten układ.
 
 \newpage
 
+\section{Obserwator Luenbergera dla modelu zlinearyzowanego}
+Z powodu awarii prądnicy tachometrycznej konieczne było zaprojektowanie obserwatora stanu przed projektowaniem regulatora proporcjonalnego do stanu. Zdecydowano użyć obserwatora Luenbergera pełnego rzędu. Jest to obserwator asymptotyczny, który na podstawie wejścia i wyjścia obiektu może odtwarzać stan obiektu, jeśli ten jest obserwowalny. Układ jest trzeciego rzędu, więc należy wybrać trzy wartości własne obserwatora tak, by zapewniały one jego asymptotyczną stabilność. Muszę więc się znajdować w lewej półpłaszczyźnie przestrzeni liczb zespolonych. Wybrano następujące wartości:
+\begin{equation}
+\begin{aligned}
+\lambda_1 &= -3\\
+\lambda_2 &= -6\\
+\lambda_3 &= -9
+\end{aligned}
+\end{equation}
+Obserwator Luenbergera pełnego rzędu opisany jest równaniem różniczkowym
+\begin{equation}
+\dot w = Aw+L(y-Cw)+Bu
+\end{equation}
+\noindent gdzie:\newline
+\(A\) jest macierzą stanu obserwowanego układu,\newline
+\(B\) jest macierzą sterowania obserwowanego układu,\newline
+\(C\) jest macierzą wyjścia obserwowanego układu,\newline
+\(G\) jest macierzą wybraną tak, by wartości własne macierzy \(A-LC\) miały ujemne części rzeczywiste,\newline
+\(w\) estymuje obserwowany stan.
+\paragraph*{}
+Wybrana macierz \(L\) miała następującą postać:
+\begin{equation}
+L =
+	\begin{bmatrix}
+	15.0434\\
+	49.9218\\
+	87.9693
+	\end{bmatrix}
+\end{equation}
+Zaprojektowany obserwator został następnie zaimplementowany w programie \textit{Simulink}. Schemat blokowy realizujący ten obserwator został przedstawiony na rysunku \ref{fig:Luenberger}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/Luenberger.png}
+	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
+	\label{fig:Luenberger}
+\end{figure}
+
+Sprawdzono działanie obserwatora na zaimplementowanym modelu obiektu oraz na rzeczywistym obiekcie. Rysunki od do przedstawiają porównanie wyjścia obserwatora ze stanem modelowanego obiektu.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=4in]{Figures/obsv_alpha_v.eps}
+	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
+	\label{fig:obsv_alpha_v}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=4in]{Figures/obsv_dalpha_v.eps}
+	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
+	\label{fig:obsv_dalpha_v}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=4in]{Figures/obsv_w_v.eps}
+	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
+	\label{fig:obsv_w_v}
+\end{figure}
+
+\FloatBarrier
+\newpage
 \section{Regulator PID}
 Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z zadaniem regulacji dla danego obiektu. W tym celu, na drodze doświadczalnej zaprojektowano układ regulacji składający się z dwóch regulatorów PID. Pierwszy z nich był odpowiedzialny za doprowadzenie obiektu w pobliże wartości zadanej tzn. $+- 10^0$, tłumiąc jednocześnie występujące w układzie oscylacje. Drugi natomiast był odpowiedzialny za pozycjonowanie helikoptera w zadanym położeniu. Schemat omawianego układu zaprezentowany jest na rysunku \ref{fig:pid_schemat}, natomiast wartości nastaw poszczególnych parametrów znajdują się w tabeli \ref{nastawy_pid} 
 %Ze względu na charakterystyki obu regulatorów pierwszy miał małe wzmocnienie części całkującej i duże części różniczkującej,   
@@ -604,14 +729,14 @@ Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie 
 \section{Porównanie działania regulatorów}
 
 Działanie zaprojektowanych regulatorów zostało sprawdzone w następujących przypadkach: 
- \begin{enumerate}
- 	\item działanie regulatorów LQ i LQI z i bez obserwatora,
- 	\item pozycjonowanie w pozycji $0^0$,
- 	\item pozycjonowanie w pozycji $+10^0$,
- 	\item pozycjonowanie w pozycji $+20^0$,
- 	\item stabilizacja układu dla regulatora LQ i sterowania początkowego wyliczonego w innym punkcie niż wartość zadana,
- 	\item zadanie nadążania.
- \end{enumerate}
+\begin{enumerate}
+	\item działanie regulatorów LQ i LQI z i bez obserwatora,
+	\item pozycjonowanie w pozycji $0^0$,
+	\item pozycjonowanie w pozycji $+10^0$,
+	\item pozycjonowanie w pozycji $+20^0$,
+	\item stabilizacja układu dla regulatora LQ i sterowania początkowego wyliczonego w innym punkcie niż wartość zadana,
+	\item zadanie nadążania.
+\end{enumerate}
 Aby móc porównać jakość sterowania w każdym z wymienionych powyżej przypadków zdefiniowano całkowy wska\'znik jakość:
 \begin{equation}\label{key}
 J =\int_{0}^{T} e^2(t) dt
@@ -783,82 +908,6 @@ Podsumowując wszystkie eksperymenty można stwierdzić, że regulator LQI poprz
 Regulator PID bardzo dobrze poradził sobie z zadaniem stabilizacji, jednak ze względu na duże nieliniowości występujące w układzie, wymagałby on każdorazowego dostrajania dla różnych wartości zadanego położenia. \\
 Eksperyment stabilizacji w innym punkcie niż została przeprowadzona linearyzacja potwierdził nasze przypuszczenia, że nieliniowość układu będzie pogarszała jakość sterowania wraz z oddalaniem się od punktu linearyzacji.\\
 Dla zadania nadążania zdecydowanie najlepszym regulatorem okazał się być regulator LQI. Wprowadził on co prawda opó\'znienie jednak zachował amplitudę sygnału zadanego.
-
-%%\section{Model zlinearyzowany}
-%\label{sec:modelzlinearyzowany}
-%Do przeprowadzenia dalszych prac niezbędny był zlinearyzowany model układu w otoczeniu punktu pracy. Jest to model liniowy, który w otoczeniu punktu równowagi zachowuje się tak samo lub podobnie do modelu nieliniowego. W tym celu konieczne było najpierw wyznaczenie zbioru punktów równowagi układu. Po kilku przekształceniach otrzymano następujący wynik:
-%\begin{equation}
-%\begin{aligned}
-%x_1&\in[0, 0.02]\\
-%x_2&=0\\
-%x_3&=\sqrt{\frac{bmg}{a}e^{\frac{x_1}{b}}}\\
-%u&=\frac{x_3-u_c}{k}
-%\end{aligned}
-%\label{eq:equilibrium}
-%\end{equation}
-%Po podstawieniu zidentyfikowanych parametrów otrzymuje się następujące równania:
-%\begin{equation}
-%\begin{aligned}
-%x_1&\in[0, 0.02]\\
-%x_2&=0\\
-%x_3&=\sqrt{0.2115e^{\frac{x_1}{0.0067}}}\\
-%u&=\frac{x_3}{2.8964}
-%\end{aligned}
-%\end{equation}
-%
-%Aby znaleźć macierze A,B,C należy wyliczyć pochodne prawych stron układu równań \eqref{eq:ss}.
-%Wyliczone macierze mają następującą postać:
-%\begin{equation}
-%\begin{aligned}
-%A&=\begin{bmatrix}
-%0 & 1 & 0\\
-%\frac{a}{b^2m}x_3^2e^{-\frac{x_1}{b}} & 0 & \frac{2}{m}x_3\frac{dL(x_1)}{dx_1}\\
-%\frac{ku+u_c-x_3}{f(x_1)^2}\frac{df(x_1)}{dx_1} & 0 & -\frac{1}{f(x_1)}
-%\end{bmatrix}\\
-%B&=\begin{bmatrix}
-%0\\
-%0\\
-%\frac{k}{f(x_1)}
-%\end{bmatrix}\\
-%C&=\begin{bmatrix}
-%1 & 0 & 0\\
-%0 & 1 & 0\\
-%0 & 0 & 1
-%\end{bmatrix}\\
-%f(x_1)&=\frac{a}{b}e^{-\frac{x_1}{b}}
-%\end{aligned}
-%\end{equation}
-%Układ został zlinearyzowany w punkcie, dla którego sfera znajduje się w odległości 10 mm od cewki. Dla tego punktu otrzymano następujące macierze układu liniowego:
-%\begin{equation}
-%\begin{aligned}
-%A&=\begin{bmatrix}
-%0 & 1 & 0\\
-%693.903 & 0 & -9.615\\
-%0 & 0 & -863.948
-%\end{bmatrix}\\
-%B&=\begin{bmatrix}
-%0\\
-%0\\
-%2502.3
-%\end{bmatrix}\\
-%C&=\begin{bmatrix}
-%1 & 0 & 0\\
-%0 & 1 & 0\\
-%0 & 0 & 1
-%\end{bmatrix}
-%\end{aligned}
-%\label{eq:linearized}
-%\end{equation}
-%
-%Zaimplementowano obliczanie punktu równowagi w modelu \textit{Simulink}. Wielkości te są potrzebne w zadaniu stabilizacji w określonym punkcie. Konieczne jest wtedy obliczenie sterowania w danym punkcie. Schemat realizujący te obliczenia przedstawiony jest na rysunku \ref{eq:equilibrium}.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=2in]{Figures/equilibrium.png}
-%	\caption{Schemat \textit{Simulink} realizujący obliczenie punktu równowagi.}
-%	\label{fig:equilibrium}
-%\end{figure}
-%
 %\section{Regulator LQ}
 %\label{sec:regulatorlq}
 %Dla układu zlinearyzowanego opisanego równaniem \eqref{eq:linearized} obliczono macierz wzmocnień regulatora LQ. Regulator ten minimalizuje następujący wskaźnik jakości:

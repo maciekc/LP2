@@ -1,1 +1,0 @@
-   Helikopter_new_LQI.c  rt_matrx.c  rt_printf.c 

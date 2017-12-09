@@ -293,7 +293,7 @@ ylabel('Po³o¿enie k¹towe [rad]');
 legend('Pomiary','Aproksymacja');
 
 %% Wyliczenie punktu równowagi
-lin_alpha_v = pi/18;
+lin_alpha_v = 0;
 lin_velocity_v = 0;
 lin_w_v = roots(wsp_M_V+[zeros(1,length(wsp_M_V)-1) a*sin(lin_alpha_v-alpha_0)]);
 lin_w_v = real(lin_w_v(lin_w_v>-330 & lin_w_v<300 & imag(lin_w_v)==0));
@@ -340,6 +340,7 @@ lin_C = [1 0 0];
 lin_D = 0;
 
 %% Regulator LQ dla osi poziomej
+ctr = ctrb(lin_A, lin_B);
 Q = [1 0 0;0 0 0;0 0 0];
 R = 1;
 N = zeros(3,1);
@@ -353,7 +354,30 @@ N = zeros(4,1);
 K_lqi = lqi(lin_sys, Q, R, N);
 
 %% Pe³ny obserwator Luenbergera dla modelu liniowego
-ob = obsv(lin_A, lin_C);
+obs = obsv(lin_A, lin_C);
 R_ob = rank(ob);
 lambda = [-3 -2 -1]*3;
 L = place(lin_A.', lin_C.', lambda).';
+
+t=(0:length(sim_alpha_v)-1)/fs;
+figure(16);
+plot(t,sim_alpha_v(:,1),'b',t,sim_alpha_v(:,2),'r');
+title('Obserwator Luenbergera - nachylenie');
+xlabel('Czas [s]');
+ylabel('Po³o¿enie k¹towe [rad]');
+grid on;
+legend('Model','Obserwator');
+figure(17);
+plot(t,sim_dalpha_v(:,1),'b',t,sim_dalpha_v(:,2),'r');
+title('Obserwator Luenbergera - prêdkoœæ k¹towa');
+xlabel('Czas [s]');
+ylabel('Prêdkoœæ k¹towa [rad/s]');
+grid on;
+legend('Model','Obserwator');
+figure(18);
+plot(t,sim_w_v(:,1),'b',t,sim_w_v(:,2),'r');
+title('Obserwator Luenbergera - prêdkoœæ silnika');
+xlabel('Czas [s]');
+ylabel('Prêdkoœæ silnika [rad/s]');
+grid on;
+legend('Model','Obserwator');

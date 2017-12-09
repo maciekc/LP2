@@ -12,12 +12,13 @@
 \BOOKMARK [2][-]{subsection.3.9}{Moment sily generowany przez silnik boczny}{section.3}% 12
 \BOOKMARK [1][-]{section.4}{Punkt r\363wnowagi}{}% 13
 \BOOKMARK [1][-]{section.5}{Linearyzacja}{}% 14
-\BOOKMARK [1][-]{section.6}{Regulator PID}{}% 15
-\BOOKMARK [1][-]{section.7}{Por\363wnanie dzialania regulator\363w}{}% 16
-\BOOKMARK [2][-]{subsection.7.1}{Por\363wnanie dzialania regulator\363w LQ i LQI z i bez obserwatora}{section.7}% 17
-\BOOKMARK [2][-]{subsection.7.2}{Stabilizacja w polozeniu 00}{section.7}% 18
-\BOOKMARK [2][-]{subsection.7.3}{Stabilizacja w polozeniu 100}{section.7}% 19
-\BOOKMARK [2][-]{subsection.7.4}{Stabilizacja w polozeniu 200}{section.7}% 20
-\BOOKMARK [2][-]{subsection.7.5}{Stabilizacja dla sterowania poczatkowego wyliczonego w innym punkcie niz wartosc zadana.}{section.7}% 21
-\BOOKMARK [2][-]{subsection.7.6}{Zadanie nadazania}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.7}{Wnioski}{section.7}% 23
+\BOOKMARK [1][-]{section.6}{Obserwator Luenbergera dla modelu zlinearyzowanego}{}% 15
+\BOOKMARK [1][-]{section.7}{Regulator PID}{}% 16
+\BOOKMARK [1][-]{section.8}{Por\363wnanie dzialania regulator\363w}{}% 17
+\BOOKMARK [2][-]{subsection.8.1}{Por\363wnanie dzialania regulator\363w LQ i LQI z i bez obserwatora}{section.8}% 18
+\BOOKMARK [2][-]{subsection.8.2}{Stabilizacja w polozeniu 00}{section.8}% 19
+\BOOKMARK [2][-]{subsection.8.3}{Stabilizacja w polozeniu 100}{section.8}% 20
+\BOOKMARK [2][-]{subsection.8.4}{Stabilizacja w polozeniu 200}{section.8}% 21
+\BOOKMARK [2][-]{subsection.8.5}{Stabilizacja dla sterowania poczatkowego wyliczonego w innym punkcie niz wartosc zadana.}{section.8}% 22
+\BOOKMARK [2][-]{subsection.8.6}{Zadanie nadazania}{section.8}% 23
+\BOOKMARK [2][-]{subsection.8.7}{Wnioski}{section.8}% 24

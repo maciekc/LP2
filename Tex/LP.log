@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.22)  9 DEC 2017 20:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.22)  9 DEC 2017 20:50
 entering extended mode
 **./LP.tex
 (LP.tex
@@ -1064,6 +1064,9 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks27
 \@floatcapt=\box52
 )
+("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\placeins\placeins.sty"
+Package: placeins 2005/04/18  v 2.2
+)
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\chngcntr\chngcntr.sty"
 Package: chngcntr 2009/09/02 v1.0a change counter resetting
 )
@@ -1079,22 +1082,22 @@ Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
 ) (LP.aux)
 \openout1 = `LP.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1226,7 +1229,7 @@ File: siunitx-abbreviations.cfg 2016/09/02 v2.6s siunitx: Abbreviated units
 \everyMPtoPDFconversion=\toks30
 )
 \AtBeginShipoutBox=\box54
-Package hyperref Info: Link coloring OFF on input line 79.
+Package hyperref Info: Link coloring OFF on input line 80.
  ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1235,9 +1238,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count169
 )
-LaTeX Info: Redefining \ref on input line 79.
-LaTeX Info: Redefining \pageref on input line 79.
-LaTeX Info: Redefining \nameref on input line 79.
+LaTeX Info: Redefining \ref on input line 80.
+LaTeX Info: Redefining \pageref on input line 80.
+LaTeX Info: Redefining \nameref on input line 80.
 
 (LP.out) (LP.out)
 \@outlinefile=\write3
@@ -1245,57 +1248,64 @@ LaTeX Info: Redefining \nameref on input line 79.
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 79.
+(lastpage)             ! on input line 80.
 \c__siunitx_mathsf_int=\count170
-LaTeX Font Info:    Try loading font information for OML+plm on input line 79.
+LaTeX Font Info:    Try loading font information for OML+plm on input line 80.
  ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\polski\omlplm.fd"
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 79.
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 80.
 
  ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\polski\omsplsy.fd"
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 79.
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 80.
 
 
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\polski\omxplex.fd"
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <10.95> on input line 79.
+(Font)              <10.95> on input line 80.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <8> on input line 79.
+(Font)              <8> on input line 80.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <6> on input line 79.
-LaTeX Font Info:    Try loading font information for U+msa on input line 79.
+(Font)              <6> on input line 80.
+LaTeX Font Info:    Try loading font information for U+msa on input line 80.
 
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 79.
+LaTeX Font Info:    Try loading font information for U+msb on input line 80.
 
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT4+cmss on input line 79.
+LaTeX Font Info:    Try loading font information for OT4+cmss on input line 80.
 
 
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\polski\ot4cmss.fd"
 File: ot4cmss.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 \c__siunitx_mathtt_int=\count171
-LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 79.
+LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 80.
 
 
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\polski\ot4cmtt.fd"
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <12> on input line 82.
+(Font)              <12> on input line 83.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+<Figures/Model_vertical.png, id=121, 842.39719pt x 417.81094pt>
+File: Figures/Model_vertical.png Graphic file (type png)
+
+<use Figures/Model_vertical.png>
+Package pdftex.def Info: Figures/Model_vertical.png used on input line 163.
+(pdftex.def)             Requested size: 426.39255pt x 211.48056pt.
+ [2]
 Package epstopdf Info: Source file: <Figures/char_V_U.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
 (epstopdf)                    size: 84042 bytes
@@ -1304,23 +1314,30 @@ Package epstopdf Info: Source file: <Figures/char_V_U.eps>
 (epstopdf)                    size: 32912 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/char_V_U-eps-conver
 ted-to.pdf Figures/char_V_U.eps>
-(epstopdf)             \includegraphics on input line 167.
+(epstopdf)             \includegraphics on input line 177.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/char_V_U-eps-converted-to.pdf, id=126, 421.575pt x 316.18124pt>
+<Figures/char_V_U-eps-converted-to.pdf, id=134, 421.575pt x 316.18124pt>
 File: Figures/char_V_U-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/char_V_U-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/char_V_U-eps-converted-to.pdf used on input li
-ne 167.
+ne 177.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [3pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+ [3pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.192 \begin{equation}
-                       <./Figures/char_V_U-eps-converted-to.pdf>] [4]
+l.181 
+       <./Figures/Model_vertical.png>] [4pdfTeX warning (ext4): destination wit
+h the same identifier (name{figure.3.1}) has been already used, duplicate ignor
+ed
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.217 \paragraph
+                *{} <./Figures/char_V_U-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/char_M_V.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
 (epstopdf)                    size: 190844 bytes
@@ -1329,23 +1346,17 @@ Package epstopdf Info: Source file: <Figures/char_M_V.eps>
 (epstopdf)                    size: 65593 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/char_M_V-eps-conver
 ted-to.pdf Figures/char_M_V.eps>
-(epstopdf)             \includegraphics on input line 247.
+(epstopdf)             \includegraphics on input line 257.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/char_M_V-eps-converted-to.pdf, id=153, 421.575pt x 316.18124pt>
+<Figures/char_M_V-eps-converted-to.pdf, id=158, 421.575pt x 316.18124pt>
 File: Figures/char_M_V-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/char_M_V-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/char_M_V-eps-converted-to.pdf used on input li
-ne 247.
+ne 257.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [5pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.276 
-       <./Figures/char_M_V-eps-converted-to.pdf>]
+ [5]
 Package epstopdf Info: Source file: <Figures/char_U_V.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
 (epstopdf)                    size: 76420 bytes
@@ -1354,16 +1365,23 @@ Package epstopdf Info: Source file: <Figures/char_U_V.eps>
 (epstopdf)                    size: 29376 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/char_U_V-eps-conver
 ted-to.pdf Figures/char_U_V.eps>
-(epstopdf)             \includegraphics on input line 279.
+(epstopdf)             \includegraphics on input line 289.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/char_U_V-eps-converted-to.pdf, id=169, 421.575pt x 316.18124pt>
+<Figures/char_U_V-eps-converted-to.pdf, id=171, 421.575pt x 316.18124pt>
 File: Figures/char_U_V-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/char_U_V-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/char_U_V-eps-converted-to.pdf used on input li
-ne 279.
+ne 289.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.293 
+       <./Figures/char_M_V-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/ident_I_v.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
 (epstopdf)                    size: 349285 bytes
@@ -1372,22 +1390,22 @@ Package epstopdf Info: Source file: <Figures/ident_I_v.eps>
 (epstopdf)                    size: 54919 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_I_v-eps-conve
 rted-to.pdf Figures/ident_I_v.eps>
-(epstopdf)             \includegraphics on input line 301.
+(epstopdf)             \includegraphics on input line 311.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_I_v-eps-converted-to.pdf, id=173, 421.575pt x 316.18124pt>
+<Figures/ident_I_v-eps-converted-to.pdf, id=187, 421.575pt x 316.18124pt>
 File: Figures/ident_I_v-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_I_v-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_I_v-eps-converted-to.pdf used on input l
-ine 301.
+ine 311.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [6pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
+ [7pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.305 
+l.315 
        <./Figures/char_U_V-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/ident_J_v.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1397,22 +1415,22 @@ Package epstopdf Info: Source file: <Figures/ident_J_v.eps>
 (epstopdf)                    size: 56322 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_J_v-eps-conve
 rted-to.pdf Figures/ident_J_v.eps>
-(epstopdf)             \includegraphics on input line 325.
+(epstopdf)             \includegraphics on input line 335.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_J_v-eps-converted-to.pdf, id=188, 421.575pt x 316.18124pt>
+<Figures/ident_J_v-eps-converted-to.pdf, id=202, 421.575pt x 316.18124pt>
 File: Figures/ident_J_v-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_J_v-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_J_v-eps-converted-to.pdf used on input l
-ine 325.
+ine 335.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.329 
+l.339 
        <./Figures/ident_I_v-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/char_U_V_az.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1422,22 +1440,22 @@ Package epstopdf Info: Source file: <Figures/char_U_V_az.eps>
 (epstopdf)                    size: 29699 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/char_U_V_az-eps-con
 verted-to.pdf Figures/char_U_V_az.eps>
-(epstopdf)             \includegraphics on input line 359.
+(epstopdf)             \includegraphics on input line 369.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/char_U_V_az-eps-converted-to.pdf, id=204, 421.575pt x 316.18124pt>
+<Figures/char_U_V_az-eps-converted-to.pdf, id=217, 421.575pt x 316.18124pt>
 File: Figures/char_U_V_az-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/char_U_V_az-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/char_U_V_az-eps-converted-to.pdf used on input
- line 359.
+ line 369.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [8pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.363 
+l.373 
        <./Figures/ident_J_v-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/ident_I_h.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1447,22 +1465,22 @@ Package epstopdf Info: Source file: <Figures/ident_I_h.eps>
 (epstopdf)                    size: 44048 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_I_h-eps-conve
 rted-to.pdf Figures/ident_I_h.eps>
-(epstopdf)             \includegraphics on input line 381.
+(epstopdf)             \includegraphics on input line 391.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_I_h-eps-converted-to.pdf, id=220, 421.575pt x 316.18124pt>
+<Figures/ident_I_h-eps-converted-to.pdf, id=233, 421.575pt x 316.18124pt>
 File: Figures/ident_I_h-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_I_h-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_I_h-eps-converted-to.pdf used on input l
-ine 381.
+ine 391.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [9pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
-}) has been already used, duplicate ignored
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.385 
+l.395 
        <./Figures/char_U_V_az-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/V_ident_J_h.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1472,22 +1490,22 @@ Package epstopdf Info: Source file: <Figures/V_ident_J_h.eps>
 (epstopdf)                    size: 32767 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/V_ident_J_h-eps-con
 verted-to.pdf Figures/V_ident_J_h.eps>
-(epstopdf)             \includegraphics on input line 408.
+(epstopdf)             \includegraphics on input line 418.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/V_ident_J_h-eps-converted-to.pdf, id=233, 421.575pt x 316.18124pt>
+<Figures/V_ident_J_h-eps-converted-to.pdf, id=246, 421.575pt x 316.18124pt>
 File: Figures/V_ident_J_h-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/V_ident_J_h-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/V_ident_J_h-eps-converted-to.pdf used on input
- line 408.
+ line 418.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [10pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [11pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.412 
+l.422 
        <./Figures/ident_I_h-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/ident_J_h.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1497,28 +1515,28 @@ Package epstopdf Info: Source file: <Figures/ident_J_h.eps>
 (epstopdf)                    size: 67186 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_J_h-eps-conve
 rted-to.pdf Figures/ident_J_h.eps>
-(epstopdf)             \includegraphics on input line 417.
+(epstopdf)             \includegraphics on input line 427.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_J_h-eps-converted-to.pdf, id=247, 421.575pt x 316.18124pt>
+<Figures/ident_J_h-eps-converted-to.pdf, id=260, 421.575pt x 316.18124pt>
 File: Figures/ident_J_h-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_J_h-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_J_h-eps-converted-to.pdf used on input l
-ine 417.
+ine 427.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [11pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.427 
+l.437 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.427 
+l.437 
        <./Figures/V_ident_J_h-eps-converted-to.pdf> <./Figures/ident_J_h-eps-co
 nverted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/V_ident_M_h.eps>
@@ -1529,15 +1547,15 @@ Package epstopdf Info: Source file: <Figures/V_ident_M_h.eps>
 (epstopdf)                    size: 27320 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/V_ident_M_h-eps-con
 verted-to.pdf Figures/V_ident_M_h.eps>
-(epstopdf)             \includegraphics on input line 430.
+(epstopdf)             \includegraphics on input line 440.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/V_ident_M_h-eps-converted-to.pdf, id=261, 421.575pt x 316.18124pt>
+<Figures/V_ident_M_h-eps-converted-to.pdf, id=274, 421.575pt x 316.18124pt>
 File: Figures/V_ident_M_h-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/V_ident_M_h-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/V_ident_M_h-eps-converted-to.pdf used on input
- line 430.
+ line 440.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
 Package epstopdf Info: Source file: <Figures/ident_M_h_04.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1548,15 +1566,15 @@ Package epstopdf Info: Source file: <Figures/ident_M_h_04.eps>
 (epstopdf)                    size: 41058 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_M_h_04-eps-co
 nverted-to.pdf Figures/ident_M_h_04.eps>
-(epstopdf)             \includegraphics on input line 439.
+(epstopdf)             \includegraphics on input line 449.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_M_h_04-eps-converted-to.pdf, id=264, 421.575pt x 316.18124pt>
+<Figures/ident_M_h_04-eps-converted-to.pdf, id=277, 421.575pt x 316.18124pt>
 File: Figures/ident_M_h_04-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_M_h_04-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_M_h_04-eps-converted-to.pdf used on inpu
-t line 439.
+t line 449.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
 Package epstopdf Info: Source file: <Figures/ident_M_h_-06.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1567,28 +1585,28 @@ Package epstopdf Info: Source file: <Figures/ident_M_h_-06.eps>
 (epstopdf)                    size: 42450 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_M_h_-06-eps-c
 onverted-to.pdf Figures/ident_M_h_-06.eps>
-(epstopdf)             \includegraphics on input line 446.
+(epstopdf)             \includegraphics on input line 456.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_M_h_-06-eps-converted-to.pdf, id=265, 421.575pt x 316.18124pt>
+<Figures/ident_M_h_-06-eps-converted-to.pdf, id=278, 421.575pt x 316.18124pt>
 File: Figures/ident_M_h_-06-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_M_h_-06-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_M_h_-06-eps-converted-to.pdf used on inp
-ut line 446.
+ut line 456.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [12pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.450 
+l.460 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.450 
+l.460 
        <./Figures/V_ident_M_h-eps-converted-to.pdf> <./Figures/ident_M_h_04-eps
 -converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/ident_M_h.eps>
@@ -1599,28 +1617,28 @@ Package epstopdf Info: Source file: <Figures/ident_M_h.eps>
 (epstopdf)                    size: 46585 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/ident_M_h-eps-conve
 rted-to.pdf Figures/ident_M_h.eps>
-(epstopdf)             \includegraphics on input line 455.
+(epstopdf)             \includegraphics on input line 465.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/ident_M_h-eps-converted-to.pdf, id=280, 421.575pt x 316.18124pt>
+<Figures/ident_M_h-eps-converted-to.pdf, id=294, 421.575pt x 316.18124pt>
 File: Figures/ident_M_h-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/ident_M_h-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/ident_M_h-eps-converted-to.pdf used on input l
-ine 455.
+ine 465.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [13pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.476 \end{equation}
+l.486 \end{equation}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.3.13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.476 \end{equation}
+l.486 \end{equation}
                      <./Figures/ident_M_h_-06-eps-converted-to.pdf> <./Figures/
 ident_M_h-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/e_p_3d.eps>
@@ -1631,15 +1649,15 @@ Package epstopdf Info: Source file: <Figures/e_p_3d.eps>
 (epstopdf)                    size: 14025 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/e_p_3d-eps-converte
 d-to.pdf Figures/e_p_3d.eps>
-(epstopdf)             \includegraphics on input line 500.
+(epstopdf)             \includegraphics on input line 510.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/e_p_3d-eps-converted-to.pdf, id=299, 421.575pt x 316.18124pt>
+<Figures/e_p_3d-eps-converted-to.pdf, id=312, 421.575pt x 316.18124pt>
 File: Figures/e_p_3d-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/e_p_3d-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/e_p_3d-eps-converted-to.pdf used on input line
- 500.
+ 510.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
 Package epstopdf Info: Source file: <Figures/e_p_x1_x3.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1649,22 +1667,22 @@ Package epstopdf Info: Source file: <Figures/e_p_x1_x3.eps>
 (epstopdf)                    size: 19448 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/e_p_x1_x3-eps-conve
 rted-to.pdf Figures/e_p_x1_x3.eps>
-(epstopdf)             \includegraphics on input line 509.
+(epstopdf)             \includegraphics on input line 519.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/e_p_x1_x3-eps-converted-to.pdf, id=302, 421.575pt x 316.18124pt>
+<Figures/e_p_x1_x3-eps-converted-to.pdf, id=315, 421.575pt x 316.18124pt>
 File: Figures/e_p_x1_x3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/e_p_x1_x3-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/e_p_x1_x3-eps-converted-to.pdf used on input l
-ine 509.
+ine 519.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [14pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.513 
+l.523 
        <./Figures/e_p_3d-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Figures/e_p_x1_u.eps>
 (epstopdf)                    date: 2017-12-08 14:19:40
@@ -1674,38 +1692,127 @@ Package epstopdf Info: Source file: <Figures/e_p_x1_u.eps>
 (epstopdf)                    size: 11276 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/e_p_x1_u-eps-conver
 ted-to.pdf Figures/e_p_x1_u.eps>
-(epstopdf)             \includegraphics on input line 516.
+(epstopdf)             \includegraphics on input line 526.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/e_p_x1_u-eps-converted-to.pdf, id=319, 421.575pt x 316.18124pt>
+<Figures/e_p_x1_u-eps-converted-to.pdf, id=332, 421.575pt x 316.18124pt>
 File: Figures/e_p_x1_u-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/e_p_x1_u-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/e_p_x1_u-eps-converted-to.pdf used on input li
-ne 516.
+ne 526.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [15pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.539 
+l.549 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 4.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.539 
+l.549 
        <./Figures/e_p_x1_x3-eps-converted-to.pdf> <./Figures/e_p_x1_u-eps-conve
-rted-to.pdf>] [16]
-<Figures/PID_schemat.png, id=347, 992.95969pt x 380.17032pt>
+rted-to.pdf>] [17] [18]
+<Figures/Luenberger.png, id=370, 795.72281pt x 411.78844pt>
+File: Figures/Luenberger.png Graphic file (type png)
+
+<use Figures/Luenberger.png>
+Package pdftex.def Info: Figures/Luenberger.png used on input line 661.
+(pdftex.def)             Requested size: 289.07999pt x 149.59464pt.
+Package epstopdf Info: Source file: <Figures/obsv_alpha_v.eps>
+(epstopdf)                    date: 2017-12-09 20:44:43
+(epstopdf)                    size: 105781 bytes
+(epstopdf)             Output file: <Figures/obsv_alpha_v-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2017-12-09 20:46:22
+(epstopdf)                    size: 38367 bytes
+(epstopdf)             Command: <epstopdf --outfile=Figures/obsv_alpha_v-eps-co
+nverted-to.pdf Figures/obsv_alpha_v.eps>
+(epstopdf)             \includegraphics on input line 670.
+Package epstopdf Info: Output file is already uptodate.
+
+<Figures/obsv_alpha_v-eps-converted-to.pdf, id=371, 421.575pt x 316.18124pt>
+File: Figures/obsv_alpha_v-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Figures/obsv_alpha_v-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/obsv_alpha_v-eps-converted-to.pdf used on inpu
+t line 670.
+(pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
+Package epstopdf Info: Source file: <Figures/obsv_dalpha_v.eps>
+(epstopdf)                    date: 2017-12-09 20:44:43
+(epstopdf)                    size: 131139 bytes
+(epstopdf)             Output file: <Figures/obsv_dalpha_v-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2017-12-09 20:46:24
+(epstopdf)                    size: 50069 bytes
+(epstopdf)             Command: <epstopdf --outfile=Figures/obsv_dalpha_v-eps-c
+onverted-to.pdf Figures/obsv_dalpha_v.eps>
+(epstopdf)             \includegraphics on input line 677.
+Package epstopdf Info: Output file is already uptodate.
+
+<Figures/obsv_dalpha_v-eps-converted-to.pdf, id=372, 421.575pt x 316.18124pt>
+File: Figures/obsv_dalpha_v-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Figures/obsv_dalpha_v-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/obsv_dalpha_v-eps-converted-to.pdf used on inp
+ut line 677.
+(pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
+Package epstopdf Info: Source file: <Figures/obsv_w_v.eps>
+(epstopdf)                    date: 2017-12-09 20:44:43
+(epstopdf)                    size: 126663 bytes
+(epstopdf)             Output file: <Figures/obsv_w_v-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-09 20:46:26
+(epstopdf)                    size: 48565 bytes
+(epstopdf)             Command: <epstopdf --outfile=Figures/obsv_w_v-eps-conver
+ted-to.pdf Figures/obsv_w_v.eps>
+(epstopdf)             \includegraphics on input line 684.
+Package epstopdf Info: Output file is already uptodate.
+
+<Figures/obsv_w_v-eps-converted-to.pdf, id=373, 421.575pt x 316.18124pt>
+File: Figures/obsv_w_v-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Figures/obsv_w_v-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/obsv_w_v-eps-converted-to.pdf used on input li
+ne 684.
+(pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
+ [19pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.689 \FloatBarrier
+                    <./Figures/Luenberger.png>] [20pdfTeX warning (ext4): desti
+nation with the same identifier (name{figure.6.2}) has been already used, dupli
+cate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.689 \FloatBarrier
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{figure.6.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.689 \FloatBarrier
+                    <./Figures/obsv_alpha_v-eps-converted-to.pdf> <./Figures/ob
+sv_dalpha_v-eps-converted-to.pdf>] [21pdfTeX warning (ext4): destination with t
+he same identifier (name{figure.6.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.689 \FloatBarrier
+                    <./Figures/obsv_w_v-eps-converted-to.pdf>]
+<Figures/PID_schemat.png, id=408, 992.95969pt x 380.17032pt>
 File: Figures/PID_schemat.png Graphic file (type png)
 
 <use Figures/PID_schemat.png>
-Package pdftex.def Info: Figures/PID_schemat.png used on input line 572.
+Package pdftex.def Info: Figures/PID_schemat.png used on input line 697.
 (pdftex.def)             Requested size: 446.82773pt x 171.07506pt.
 
-Overfull \hbox (20.03638pt too wide) in paragraph at lines 572--573
+Overfull \hbox (20.03638pt too wide) in paragraph at lines 697--698
  [][] 
  []
 
@@ -1717,38 +1824,40 @@ Package epstopdf Info: Source file: <Figures/pid30.eps>
 (epstopdf)                    size: 28049 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/pid30-eps-converted
 -to.pdf Figures/pid30.eps>
-(epstopdf)             \includegraphics on input line 598.
+(epstopdf)             \includegraphics on input line 723.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/pid30-eps-converted-to.pdf, id=350, 421.575pt x 316.18124pt>
+<Figures/pid30-eps-converted-to.pdf, id=410, 421.575pt x 316.18124pt>
 File: Figures/pid30-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/pid30-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/pid30-eps-converted-to.pdf used on input line 
-598.
+723.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [17pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
-1}) has been already used, duplicate ignored
+ [22
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7.1}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.602 
+l.727 
       pdfTeX warning (ext4): destination with the same identifier (name{table.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.602 
-       <./Figures/PID_schemat.png>] [18pdfTeX warning (ext4): destination with 
-the same identifier (name{figure.6.2}) has been already used, duplicate ignored
+l.727 
+       <./Figures/PID_schemat.png>] [23pdfTeX warning (ext4): destination with 
+the same identifier (name{figure.7.2}) has been already used, duplicate ignored
 
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.603 \newpage
+l.728 \newpage
                <./Figures/pid30-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `fig:por_LQ0, fig:por_LQ0obs' on page 19 undefined on 
-input line 621.
+LaTeX Warning: Reference `fig:por_LQ0, fig:por_LQ0obs' on page 24 undefined on 
+input line 746.
 
 Package epstopdf Info: Source file: <Figures/por_LQ0.eps>
 (epstopdf)                    date: 2017-12-09 15:58:52
@@ -1758,21 +1867,21 @@ Package epstopdf Info: Source file: <Figures/por_LQ0.eps>
 (epstopdf)                    size: 18216 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/por_LQ0-eps-convert
 ed-to.pdf Figures/por_LQ0.eps>
-(epstopdf)             \includegraphics on input line 645.
+(epstopdf)             \includegraphics on input line 770.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/por_LQ0-eps-converted-to.pdf, id=370, 421.575pt x 316.18124pt>
+<Figures/por_LQ0-eps-converted-to.pdf, id=430, 421.575pt x 316.18124pt>
 File: Figures/por_LQ0-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/por_LQ0-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/por_LQ0-eps-converted-to.pdf used on input lin
-e 645.
+e 770.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [19pdfTeX warning (ext4): destination with the same identifier (name{table.2})
+ [24pdfTeX warning (ext4): destination with the same identifier (name{table.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.649 
+l.774 
       ]
 Package epstopdf Info: Source file: <Figures/por_LQ0obs.eps>
 (epstopdf)                    date: 2017-12-09 16:00:17
@@ -1782,28 +1891,28 @@ Package epstopdf Info: Source file: <Figures/por_LQ0obs.eps>
 (epstopdf)                    size: 14428 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/por_LQ0obs-eps-conv
 erted-to.pdf Figures/por_LQ0obs.eps>
-(epstopdf)             \includegraphics on input line 652.
+(epstopdf)             \includegraphics on input line 777.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/por_LQ0obs-eps-converted-to.pdf, id=385, 421.575pt x 316.18124pt>
+<Figures/por_LQ0obs-eps-converted-to.pdf, id=444, 421.575pt x 316.18124pt>
 File: Figures/por_LQ0obs-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/por_LQ0obs-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/por_LQ0obs-eps-converted-to.pdf used on input 
-line 652.
+line 777.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 657.
+(hyperref)                removing `math shift' on input line 782.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 657.
+(hyperref)                removing `superscript' on input line 782.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 657.
+(hyperref)                removing `math shift' on input line 782.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1816,40 +1925,40 @@ Package epstopdf Info: Source file: <Figures/por_LQ0PID.eps>
 (epstopdf)                    size: 17022 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/por_LQ0PID-eps-conv
 erted-to.pdf Figures/por_LQ0PID.eps>
-(epstopdf)             \includegraphics on input line 680.
+(epstopdf)             \includegraphics on input line 805.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/por_LQ0PID-eps-converted-to.pdf, id=388, 421.575pt x 316.18124pt>
+<Figures/por_LQ0PID-eps-converted-to.pdf, id=447, 421.575pt x 316.18124pt>
 File: Figures/por_LQ0PID-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/por_LQ0PID-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/por_LQ0PID-eps-converted-to.pdf used on input 
-line 680.
+line 805.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [20pdfTeX warning (ext4): destination with the same identifier (name{figure.7.
+ [25pdfTeX warning (ext4): destination with the same identifier (name{figure.8.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.684 
+l.809 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7.2}) has been already used, duplicate ignored
+8.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.684 
+l.809 
        <./Figures/por_LQ0-eps-converted-to.pdf> <./Figures/por_LQ0obs-eps-conve
 rted-to.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 685.
+(hyperref)                removing `math shift' on input line 810.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 685.
+(hyperref)                removing `superscript' on input line 810.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 685.
+(hyperref)                removing `math shift' on input line 810.
 
 Package epstopdf Info: Source file: <Figures/por_LQ18.eps>
 (epstopdf)                    date: 2017-12-09 15:44:42
@@ -1859,45 +1968,45 @@ Package epstopdf Info: Source file: <Figures/por_LQ18.eps>
 (epstopdf)                    size: 15871 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/por_LQ18-eps-conver
 ted-to.pdf Figures/por_LQ18.eps>
-(epstopdf)             \includegraphics on input line 707.
+(epstopdf)             \includegraphics on input line 832.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/por_LQ18-eps-converted-to.pdf, id=404, 421.575pt x 316.18124pt>
+<Figures/por_LQ18-eps-converted-to.pdf, id=464, 421.575pt x 316.18124pt>
 File: Figures/por_LQ18-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/por_LQ18-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/por_LQ18-eps-converted-to.pdf used on input li
-ne 707.
+ne 832.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [21pdfTeX warning (ext4): destination with the same identifier (name{table.3})
+ [26pdfTeX warning (ext4): destination with the same identifier (name{table.3})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.711 
+l.836 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7.3}) has been already used, duplicate ignored
+8.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.711 
+l.836 
       pdfTeX warning (ext4): destination with the same identifier (name{table.4
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.711 
+l.836 
        <./Figures/por_LQ0PID-eps-converted-to.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 712.
+(hyperref)                removing `math shift' on input line 837.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 712.
+(hyperref)                removing `superscript' on input line 837.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 712.
+(hyperref)                removing `math shift' on input line 837.
 
 Package epstopdf Info: Source file: <Figures/por_LQ9.eps>
 (epstopdf)                    date: 2017-12-09 15:48:17
@@ -1907,39 +2016,39 @@ Package epstopdf Info: Source file: <Figures/por_LQ9.eps>
 (epstopdf)                    size: 14516 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/por_LQ9-eps-convert
 ed-to.pdf Figures/por_LQ9.eps>
-(epstopdf)             \includegraphics on input line 734.
+(epstopdf)             \includegraphics on input line 859.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/por_LQ9-eps-converted-to.pdf, id=414, 421.575pt x 316.18124pt>
+<Figures/por_LQ9-eps-converted-to.pdf, id=474, 421.575pt x 316.18124pt>
 File: Figures/por_LQ9-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/por_LQ9-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/por_LQ9-eps-converted-to.pdf used on input lin
-e 734.
+e 859.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
 
-Overfull \hbox (4.3392pt too wide) in paragraph at lines 739--739
+Overfull \hbox (4.3392pt too wide) in paragraph at lines 864--864
 []\OT4/cmr/bx/n/12 Stabilizacja dla ste-ro-wa-nia po-cz¡t-ko-wego wy-li-czo-neg
 o w in-nym punk-
  []
 
-[22pdfTeX warning (ext4): destination with the same identifier (name{figure.7.4
+[27pdfTeX warning (ext4): destination with the same identifier (name{figure.8.4
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.756 
+l.881 
       pdfTeX warning (ext4): destination with the same identifier (name{table.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.756 
+l.881 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7.5}) has been already used, duplicate ignored
+8.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.756 
+l.881 
        <./Figures/por_LQ18-eps-converted-to.pdf> <./Figures/por_LQ9-eps-convert
 ed-to.pdf>]
 Package epstopdf Info: Source file: <Figures/porLQ9_u.eps>
@@ -1950,15 +2059,15 @@ Package epstopdf Info: Source file: <Figures/porLQ9_u.eps>
 (epstopdf)                    size: 13280 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/porLQ9_u-eps-conver
 ted-to.pdf Figures/porLQ9_u.eps>
-(epstopdf)             \includegraphics on input line 759.
+(epstopdf)             \includegraphics on input line 884.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/porLQ9_u-eps-converted-to.pdf, id=430, 421.575pt x 316.18124pt>
+<Figures/porLQ9_u-eps-converted-to.pdf, id=490, 421.575pt x 316.18124pt>
 File: Figures/porLQ9_u-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/porLQ9_u-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/porLQ9_u-eps-converted-to.pdf used on input li
-ne 759.
+ne 884.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
 Package epstopdf Info: Source file: <Figures/por_foll_LQLQI.eps>
 (epstopdf)                    date: 2017-12-09 15:33:24
@@ -1969,59 +2078,59 @@ f>
 (epstopdf)                    size: 38692 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figures/por_foll_LQLQI-eps-
 converted-to.pdf Figures/por_foll_LQLQI.eps>
-(epstopdf)             \includegraphics on input line 776.
+(epstopdf)             \includegraphics on input line 901.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/por_foll_LQLQI-eps-converted-to.pdf, id=432, 421.575pt x 316.18124pt>
+<Figures/por_foll_LQLQI-eps-converted-to.pdf, id=492, 421.575pt x 316.18124pt>
 File: Figures/por_foll_LQLQI-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures/por_foll_LQLQI-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/por_foll_LQLQI-eps-converted-to.pdf used on in
-put line 776.
+put line 901.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
- [23pdfTeX warning (ext4): destination with the same identifier (name{table.6})
+ [28pdfTeX warning (ext4): destination with the same identifier (name{table.6})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.780 
+l.905 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7.6}) has been already used, duplicate ignored
+8.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.780 
+l.905 
        <./Figures/porLQ9_u-eps-converted-to.pdf>] (LP.bbl)
 
 AED: lastpage setting LastPage
-[24pdfTeX warning (ext4): destination with the same identifier (name{figure.7.7
+[29pdfTeX warning (ext4): destination with the same identifier (name{figure.8.7
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1334 \end{document}
+l.1383 \end{document}
                       <./Figures/por_foll_LQLQI-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1334.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1334.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1383.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1383.
  (LP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1334.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1334.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1383.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1383.
 
 Package rerunfilecheck Info: File `LP.out' has not changed.
-(rerunfilecheck)             Checksum: 26C3584C97C166C7854F84F05E154BD6;1867.
+(rerunfilecheck)             Checksum: 4F315C2245B2FDD9F594E71AA10CDC80;1954.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1334.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1383.
  ) 
 Here is how much of TeX's memory you used:
- 18914 strings out of 493334
- 354980 string characters out of 3136669
- 430408 words of memory out of 3000000
- 22038 multiletter control sequences out of 15000+200000
+ 18987 strings out of 493334
+ 356600 string characters out of 3136669
+ 433034 words of memory out of 3000000
+ 22084 multiletter control sequences out of 15000+200000
  19433 words of font info for 58 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,18n,43p,10415b,743s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,18n,43p,10415b,739s stack positions out of 5000i,500n,10000p,200000b,50000s
 {d:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}{d:/Program Fi
 les (x86)/MiKTeX 2.9/fonts/enc/dvips/pl/plms.enc}{d:/Program Files (x86)/MiKTeX
  2.9/fonts/enc/dvips/pl/plmi.enc}{d:/Program Files (x86)/MiKTeX 2.9/fonts/enc/d
@@ -2038,9 +2147,9 @@ iKTeX 2.9/fonts/type1/public/pl/plr8.pfb><d:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/pl/plsy10.pfb><d:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
 blic/pl/plsy6.pfb><d:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/pl/plsy
 8.pfb><d:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/pl/plti10.pfb>
-Output written on LP.pdf (24 pages, 927261 bytes).
+Output written on LP.pdf (29 pages, 1177835 bytes).
 PDF statistics:
- 528 PDF objects out of 1000 (max. 8388607)
- 127 named destinations out of 1000 (max. 500000)
- 310 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 592 PDF objects out of 1000 (max. 8388607)
+ 145 named destinations out of 1000 (max. 500000)
+ 343 words of extra memory for PDF output out of 10000 (max. 10000000)
 
