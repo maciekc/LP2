@@ -293,41 +293,41 @@ ylabel('Po³o¿enie k¹towe [rad]');
 legend('Pomiary','Aproksymacja');
 
 %% Wyliczenie punktu równowagi
-lin_alpha_v = 0;
+lin_alpha_v = pi/18;
 lin_velocity_v = 0;
 lin_w_v = roots(wsp_M_V+[zeros(1,length(wsp_M_V)-1) a*sin(lin_alpha_v-alpha_0)]);
 lin_w_v = real(lin_w_v(lin_w_v>-330 & lin_w_v<300 & imag(lin_w_v)==0));
 lin_u_v = polyval(wsp_U_V, lin_w_v);
-
-vect_lin_alpha_v = linspace(-pi/3+pi/65,pi/6-pi/170,1e3);
-vect_lin_w_v = zeros(1, length(vect_lin_alpha_v)); 
-for i=1:length(vect_lin_alpha_v)
-    temp_lin_w_v = roots(wsp_M_V+[zeros(1,length(wsp_M_V)-1) a*sin(vect_lin_alpha_v(i)-alpha_0)]);
-    vect_lin_w_v(i) = real(temp_lin_w_v(temp_lin_w_v>-330 & temp_lin_w_v<300 & imag(temp_lin_w_v)==0));
-end
-vect_lin_u_v = polyval(wsp_U_V, vect_lin_w_v);
-
-figure(13);
-plot3(vect_lin_alpha_v, vect_lin_w_v, vect_lin_u_v);
-grid on;
-title('Zbiór punktów równowagi');
-xlabel('x_1 [rad]');
-ylabel('x_3 [rad/s]');
-zlabel('u');
-
-figure(14);
-plot(vect_lin_alpha_v,vect_lin_w_v);
-grid on;
-title('Prêdkoœæ silnika w punktach równowagi');
-xlabel('x_1 [rad]');
-ylabel('x_3 [rad/s]');
-
-figure(15);
-plot(vect_lin_alpha_v,vect_lin_u_v);
-grid on;
-title('Sterowanie w punktach równowagi');
-xlabel('x_1 [rad]');
-ylabel('u');
+% 
+% vect_lin_alpha_v = linspace(-pi/3+pi/65,pi/6-pi/170,1e3);
+% vect_lin_w_v = zeros(1, length(vect_lin_alpha_v)); 
+% for i=1:length(vect_lin_alpha_v)
+%     temp_lin_w_v = roots(wsp_M_V+[zeros(1,length(wsp_M_V)-1) a*sin(vect_lin_alpha_v(i)-alpha_0)]);
+%     vect_lin_w_v(i) = real(temp_lin_w_v(temp_lin_w_v>-330 & temp_lin_w_v<300 & imag(temp_lin_w_v)==0));
+% end
+% vect_lin_u_v = polyval(wsp_U_V, vect_lin_w_v);
+% 
+% figure(13);
+% plot3(vect_lin_alpha_v, vect_lin_w_v, vect_lin_u_v);
+% grid on;
+% title('Zbiór punktów równowagi');
+% xlabel('x_1 [rad]');
+% ylabel('x_3 [rad/s]');
+% zlabel('u');
+% 
+% figure(14);
+% plot(vect_lin_alpha_v,vect_lin_w_v);
+% grid on;
+% title('Prêdkoœæ silnika w punktach równowagi');
+% xlabel('x_1 [rad]');
+% ylabel('x_3 [rad/s]');
+% 
+% figure(15);
+% plot(vect_lin_alpha_v,vect_lin_u_v);
+% grid on;
+% title('Sterowanie w punktach równowagi');
+% xlabel('x_1 [rad]');
+% ylabel('u');
 
 %% Linearyzacja w punkcie równowagi
 lin_M_V_diff = polyder(wsp_M_V);

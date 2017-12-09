@@ -143,6 +143,7 @@ Równania \eqref{eq:model_vertical} i \eqref{eq:model_horizontal} przekształcon
 \dot x_2 &= -\frac{f_v}{J_v}x_2+\frac{a}{J_v}\sin (\alpha_v-\alpha_{v0})+\frac{M_v(\omega_v)}{J_v}\\
 \dot x_3 &= \frac{u_v}{I_v}-\frac{H_v^{-1}(\omega_v)}{I_v}
 \end{aligned}
+\label{eq:ss_vertical}
 \end{equation}
 
 Natomiast dla równań \eqref{eq:model_horizontal} mają następującą postać:
@@ -517,7 +518,51 @@ Rysunek \ref{fig:e_p_x1_x3} wyraża zależność prędkości kątowej silnika od
 	\label{fig:e_p_x1_u}
 \end{figure}
 
-%\section{Model zlinearyzowany}
+\section{Linearyzacja}
+\label{sec:linearyzacja}
+W procesie projektowania układu sterowania konieczne było wyznaczenie modelu zlinearyzowanego w punkcie równowagi. Jest to model liniowy, który w otoczeniu punktu równowagi zachowuje się tak samo lub podobnie do modelu nieliniowego. Model linowy jest opisany równaniem różniczkowym \eqref{eq:linear}.
+\begin{equation}
+\begin{aligned}
+\dot x &= Ax+Bu\\
+y &= Cx+Du
+\end{aligned}
+\label{eq:linear}
+\end{equation}
+\noindent gdzie:\newline
+\(x\) jest wektorem stanu,\newline
+\(y\) jest wektorem wyjścia,\newline
+\(u\) jest wektorem sterowania,\newline
+\(A\) jest macierzą stanu,\newline
+\(B\) jest macierzą sterowania,\newline
+\(C\) jest macierzą wyjścia,\newline
+\(D\) jest macierzą transmisyjną.
+
+Aby znaleźć macierze A,B,C,D należy wyliczyć pochodne prawych stron układu równań \eqref{eq:ss_vertical} po każdej zmiennej stanu oraz sterowaniu. Po wykonaniu odpowiednich obliczeń otrzymano model zlinearyzowany opisany macierzami \eqref{eq:linear_ABCD}.
+\begin{equation}
+\begin{aligned}
+A &=
+	\begin{bmatrix}
+	0 & 1 & 0\\
+	\frac{a}{J_v}\cos(\alpha_{lin}-\alpha_{v0}) & -\frac{f_v}{J_v} & \frac{1}{J_v}\frac{dM_v(\omega_v)}{d\omega_v}(\omega_{lin})\\
+	0 & 0 & -\frac{1}{I_v}\frac{dH_v^{-1}(\omega_v)}{d\omega_v}(\omega_{lin})
+	\end{bmatrix}\\
+B &=
+	\begin{bmatrix}
+	0\\
+	0\\
+	\frac{1}{I_v}
+	\end{bmatrix}\\
+C &=
+	\begin{bmatrix}
+	1 & 0 & 0
+	\end{bmatrix}\\
+D &= 0	
+\end{aligned}
+\label{eq:linear_ABCD}
+\end{equation}
+
+
+%%\section{Model zlinearyzowany}
 %\label{sec:modelzlinearyzowany}
 %Do przeprowadzenia dalszych prac niezbędny był zlinearyzowany model układu w otoczeniu punktu pracy. Jest to model liniowy, który w otoczeniu punktu równowagi zachowuje się tak samo lub podobnie do modelu nieliniowego. W tym celu konieczne było najpierw wyznaczenie zbioru punktów równowagi układu. Po kilku przekształceniach otrzymano następujący wynik:
 %\begin{equation}
