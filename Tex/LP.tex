@@ -561,6 +561,228 @@ D &= 0
 \label{eq:linear_ABCD}
 \end{equation}
 
+\newpage
+
+\section{Regulator PID}
+Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z zadaniem regulacji dla danego obiektu. W tym celu, na drodze doświadczalnej zaprojektowano układ regulacji składający się z dwóch regulatorów PID. Pierwszy z nich był odpowiedzialny za doprowadzenie obiektu w pobliże wartości zadanej tzn. $+- 10^0$, tłumiąc jednocześnie występujące w układzie oscylacje. Drugi natomiast był odpowiedzialny za pozycjonowanie helikoptera w zadanym położeniu. Schemat omawianego układu zaprezentowany jest na rysunku \ref{fig:pid_schemat}, natomiast wartości nastaw poszczególnych parametrów znajdują się w tabeli \ref{nastawy_pid} 
+%Ze względu na charakterystyki obu regulatorów pierwszy miał małe wzmocnienie części całkującej i duże części różniczkującej,   
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{Figures/PID_schemat.png}
+	\caption{Schemat układu sterowania dla regulatorów PID.}
+	\label{fig:pid_schemat}
+\end{figure}
+
+\begin{table}[h]
+	\caption{Wartości nastaw regulatorów PID.}
+	\label{nastawy_pid}
+	\centering
+	
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Regulator &P&I&D\\
+		\hline
+		Reg. nr 1 &0.025&   0 &  0.035\\
+		\hline
+		Reg. nr 2 &0.2 &0.012 &0.015\\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+Ze względu na to, że zadaniem pierwszego regulatora było jak najszybsze doprowadzenie obiektu w okolice wartości zadanej i wyeliminowanie oscylacji, to wartość wzmocnienia części różniczkującej jest większa niż w przypadku drugiego regulatora. Analogiczna zależność zachodzi dla regulatora nr 2 i części całkującej, której to wartości jest większa niż w pierwszym przypadku. \\
+Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie członu całkującego regulatora nr 2, w momencie gdy ten nie był aktywny. Na drodze przeprowadzonych eksperymentów  ustalono, że najlepiej będzie podawać na ten regulator 0.1 wartości uchybu gdy jest on nieaktywny. Dzięki temu człon całkujący nie osiągał aż tak dużej wartości, która wprowadziłaby do układu oscylacje i jednocześnie był na tyle duży aby zaraz po aktywacji omawianego regulatora generować sterowanie sprowadzające układ do wartości zadanej.  Na rysunku \ref{fig:PID_30} zaprezentowano działanie całego układu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/pid30.eps}
+	\caption{Działanie regulatora PID dla stabilizacji w położeniu $+30 ^0$.}
+	\label{fig:PID_30}
+\end{figure}
+
+\newpage
+\section{Porównanie działania regulatorów}
+
+Działanie zaprojektowanych regulatorów zostało sprawdzone w następujących przypadkach: 
+ \begin{enumerate}
+ 	\item działanie regulatorów LQ i LQI z i bez obserwatora,
+ 	\item pozycjonowanie w pozycji $0^0$,
+ 	\item pozycjonowanie w pozycji $+10^0$,
+ 	\item pozycjonowanie w pozycji $+20^0$,
+ 	\item stabilizacja układu dla regulatora LQ i sterowania początkowego wyliczonego w innym punkcie niż wartość zadana,
+ 	\item zadanie nadążania.
+ \end{enumerate}
+Aby móc porównać jakość sterowania w każdym z wymienionych powyżej przypadków zdefiniowano całkowy wska\'znik jakość:
+\begin{equation}\label{key}
+J =\int_{0}^{T} e^2(t) dt
+\end{equation}
+
+\subsection{Porównanie działania regulatorów LQ i LQI z i bez obserwatora}
+W tym przypadku sprawdzono jak włączenie do układu regulacji obserwatora wpłynęło na jakość regulacji. Jak można zauważyć na rys. \ref{fig:por_LQ0, fig:por_LQ0obs} po zastosowaniu obserwatora przeregulowanie dla regulatora LQI zmalało z $23.28 ^0$ do $ 20.92$, natomiast dla regulatora LQ widać znaczącą redukcję oscylacji. Wartości wspa\'znika jakości dla wszystkich czterech przypadków znajdują się w tabeli \ref{obs_por_tab}.
+
+\begin{table}[h]
+	\caption{Wska\'zniki jakości dla układu z i bez obserwatora.}
+	\label{obs_por_tab}
+	\centering
+	
+	\begin{tabular}{|c|c|}
+		\hline
+		przypadek &J\\
+		\hline
+		Reg. LQ & $5.2031\cdot 10 ^3$\\
+		\hline
+		Reg. LQ + obserwator & $5.7391 \cdot 10 ^3$\\
+		\hline
+		Reg. LQI & $2.9717 \cdot 10 ^3$\\
+		\hline
+		Reg. LQI + obserwator & $2.9310 \cdot 10 ^3$\\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/por_LQ0.eps}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $0 ^0$ bez obserwatora.}
+	\label{fig:por_LQ0}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/por_LQ0obs.eps}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $0 ^0$ z obserwatorem.}
+	\label{fig:por_LQ0obs}
+\end{figure}
+
+\subsection{Stabilizacja w położeniu $0^0$}
+W przypadku stabilizacji w położeniu $0^0$ porównano ze sobą wszystkie trzy typy regulatorów. Wartości wska\'znika jakości dla każdego z przypadków zamieszczone są w tabeli \ref{por_reg_0_tab}. Jak można zauważyć na rys. \ref{fig:por_LQPID_0} najlepiej z zadaniem stabilizacji poradził sobie regulator PID. 
+
+\begin{table}[h]
+	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $0^0$.}
+	\label{por_reg_0_tab}
+	\centering
+	
+	\begin{tabular}{|c|c|}
+		\hline
+		Regulator &J\\
+		\hline
+		LQ & $1.2540 \cdot 10 ^3$\\
+		\hline
+		LQI & $1.2775 \cdot 10 ^3$\\
+		\hline
+		PID & $ 1.0293 \cdot 10 ^3$\\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/por_LQ0PID.eps}
+	\caption{Porównanie działania regulatora PID LQ i LQI dla stabilizacji w położeniu $+0 ^0$.}
+	\label{fig:por_LQPID_0}
+\end{figure}
+
+\subsection{Stabilizacja w położeniu $10^0$}
+Wartości wska\'znika jakości podane są w tabeli \ref{por_reg_10_tab}
+
+\begin{table}[h]
+	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $10^0$.}
+	\label{por_reg_10_tab}
+	\centering
+	
+	\begin{tabular}{|c|c|}
+		\hline
+		Regulator &J\\
+		\hline
+		LQ & $1.4181 \cdot 10 ^3$\\
+		\hline
+		LQI & $1.8473 \cdot 10 ^3$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/por_LQ18.eps}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $+10 ^0$.}
+	\label{fig:por_LQ10}
+\end{figure}
+
+\subsection{Stabilizacja w położeniu $20^0$}
+
+Wartości wska\'znika jakości podane są w tabeli \ref{por_reg_20_tab}
+
+\begin{table}[h]
+	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $20^0$.}
+	\label{por_reg_20_tab}
+	\centering
+	
+	\begin{tabular}{|c|c|}
+		\hline
+		Regulator &J\\
+		\hline
+		LQ & $2.6635 \cdot 10 ^3$\\
+		\hline
+		LQI & $2.9310 \cdot 10 ^3$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/por_LQ9.eps}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $+20 ^0$.}
+	\label{fig:por_LQ20}
+\end{figure}
+
+\subsection{Stabilizacja dla sterowania początkowego wyliczonego w innym punkcie niż wartość zadana.}
+Z tabeli \ref{por_reg_LQ_u0} i wykresu \ref{fig:por_LQ9_u} wynika, że zaniedbanie linearyzacji modelu rozważanego układu, w celu wyliczenia $u_0$ dla stabilizacji w różnych pozycjach, w znaczący sposób przekłada się na jakość sterowania. Odpowiednio wska\'znik jakości \textit{J} jak i również przeregulowanie i uchyb ustalony są gorsze dla regulatora zlinearyzowanego w położeniu $0^0$. 
+\begin{table}[h]
+	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $20^0$ dla różnych wartości $u_0$.}
+	\label{por_reg_LQ_u0}
+	\centering
+	
+	\begin{tabular}{|c|c|}
+		\hline
+		Punkt pracy &J\\
+		\hline
+		$0^0$ & $2.7635 \cdot 10 ^3$\\
+		\hline
+		$20^0$ & $2.7306 \cdot 10 ^3$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/porLQ9_u.eps}
+	\caption{Porównanie działania regulatora LQ dla stabilizacji w położeniu $+20 ^0$ dla sterowania początkowego wyliczonego w punkcie $0^0$ i $20^0$.}
+	\label{fig:por_LQ9_u}
+\end{figure}
+
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=4in]{Figures/porLQ18_u.eps}
+%	\caption{Porównanie działania regulatora LQ dla stabilizacji w położeniu $+10 ^0$ dla sterowania początkowego wyliczonego w punkcie $0^0$ i $10^0$.}
+%	\label{fig:por_LQ18_u}
+%\end{figure}
+
+\subsection{Zadanie nadążania}
+Na podstawie wykresu \ref{fig:por_foll_LQILQ} wynika, że regulator LQI poradził sobie zdecydowanie lepiej z zadaniem nadążania niż regulator LQ. Opó\'znienie pomiędzy wartością zadaną, a pozycją helikoptera wynosi dla regulatora LQI $2.22 \ s$, natomiast dla regulatora LQ $12.3 \ s$. Amplituda w przypadku LQI odbiega od zadanej maksymalnie o $19.2 \ \%$, a w przypadku regulatora LQ nawet o $107 \ \%$. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/por_foll_LQLQI.eps}
+	\caption{Porównanie działania regulatorów LQI i LQ dla zadania nadążania.}
+	\label{fig:por_foll_LQILQ}
+\end{figure}
+
+\subsection{Wnioski}
+Podsumowując wszystkie eksperymenty można stwierdzić, że regulator LQI poprzez zastosowanie członu całkującego dobrze niwelował uchyb ustalony. Niestety wykorzystanie całki znacznie zwiększyło przeregulowanie. Prawdopodobnie zastosowanie w strukturze regulatora filtru typu \textit{wind-up} mogło by zmniejszyć wartość tego parametru. Zdecydowanie mniejsze przeregulowanie otrzymano przy wykorzystaniu klasycznego regulatora LQ, jednak wiązało się to występowaniem uchybu w stanie ustalonym. \\
+Regulator PID bardzo dobrze poradził sobie z zadaniem stabilizacji, jednak ze względu na duże nieliniowości występujące w układzie, wymagałby on każdorazowego dostrajania dla różnych wartości zadanego położenia. \\
+Eksperyment stabilizacji w innym punkcie niż została przeprowadzona linearyzacja potwierdził nasze przypuszczenia, że nieliniowość układu będzie pogarszała jakość sterowania wraz z oddalaniem się od punktu linearyzacji.\\
+Dla zadania nadążania zdecydowanie najlepszym regulatorem okazał się być regulator LQI. Wprowadził on co prawda opó\'znienie jednak zachował amplitudę sygnału zadanego.
 
 %%\section{Model zlinearyzowany}
 %\label{sec:modelzlinearyzowany}
