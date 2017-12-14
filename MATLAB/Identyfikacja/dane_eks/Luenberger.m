@@ -1,0 +1,21 @@
+load('LQ_z0_obserwator.mat');
+
+figure(1);
+plot(kat.time,kat.signals.values(:,1),'b',kat.time,kat.signals.values(:,2),'r');
+title('Obserwator Luenbergera - nachylenie');
+xlabel('Czas [s]');
+ylabel('K¹t [rad]');
+grid on;
+legend('Wyjœcie enkodera','Wyjœcie obserwatora');
+figure(2);
+plot(pred.time,pred.signals.values);
+title('Obserwator Luenbergera - prêdkoœæ k¹towa');
+xlabel('Czas [s]');
+ylabel('Prêkoœæ k¹towa [rad/s]');
+grid on;
+figure(3);
+plot(v_motor.time,v_motor.signals.values);
+title('Obserwator Luenbergera - prêdkoœæ silnika');
+xlabel('Czas [s]');
+ylabel('Prêdkoœæ k¹towa [rad]');
+grid on;

@@ -623,8 +623,6 @@ P &=
 \end{equation}
 Rząd obu powyższych macierzy wynosi 3. Stąd wnioskujemy, że układ ten jest sterowalny i obserwowalny. Możliwe jest więc zaprojektowanie obserwatora odtwarzającego stan układu oraz regulatora proporcjonalnego do stanu, który będzie stabilizował ten układ.
 
-\newpage
-
 \section{Obserwator Luenbergera dla modelu zlinearyzowanego}
 Z powodu awarii prądnicy tachometrycznej konieczne było zaprojektowanie obserwatora stanu przed projektowaniem regulatora proporcjonalnego do stanu. Zdecydowano użyć obserwatora Luenbergera pełnego rzędu. Jest to obserwator asymptotyczny, który na podstawie wejścia i wyjścia obiektu może odtwarzać stan obiektu, jeśli ten jest obserwowalny. Układ jest trzeciego rzędu, więc należy wybrać trzy wartości własne obserwatora tak, by zapewniały one jego asymptotyczną stabilność. Muszę więc się znajdować w lewej półpłaszczyźnie przestrzeni liczb zespolonych. Wybrano następujące wartości:
 \begin{equation}
@@ -663,43 +661,266 @@ Zaprojektowany obserwator został następnie zaimplementowany w programie \texti
 	\label{fig:Luenberger}
 \end{figure}
 
-Sprawdzono działanie obserwatora na zaimplementowanym modelu obiektu oraz na rzeczywistym obiekcie. Rysunki od do przedstawiają porównanie wyjścia obserwatora ze stanem modelowanego obiektu.
+Sprawdzono działanie obserwatora na zaimplementowanym modelu obiektu oraz na rzeczywistym obiekcie. Wykresy od \ref{fig:obsv_model_alpha_v} do \ref{fig:obsv_model_w_v} przedstawiają porównanie wyjścia obserwatora ze stanem modelowanego obiektu. Natomiast wykresy od \ref{fig:obsv_obj_alpha_v} do \ref{fig:obsv_obj_w_v} pokazują działanie obserwatora na rzeczywistym obiekcie.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=4in]{Figures/obsv_alpha_v.eps}
-	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
-	\label{fig:obsv_alpha_v}
+	\includegraphics[width=4in]{Figures/obsv_model_alpha_v.eps}
+	\caption{Porównanie nachylenia modelu z nachyleniem obserwatora.}
+	\label{fig:obsv_model_alpha_v}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=4in]{Figures/obsv_dalpha_v.eps}
-	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
-	\label{fig:obsv_dalpha_v}
+	\includegraphics[width=4in]{Figures/obsv_model_dalpha_v.eps}
+	\caption{Porównanie prędkości kątowej modelu z prędkością kątową obserwatora.}
+	\label{fig:obsv_model_dalpha_v}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=4in]{Figures/obsv_w_v.eps}
-	\caption{Schemat blokowy realizujący obserwator Luenbergera.}
-	\label{fig:obsv_w_v}
+	\includegraphics[width=4in]{Figures/obsv_model_w_v.eps}
+	\caption{Porównanie prędkości silnika modelu z prędkością silnika obserwatora.}
+	\label{fig:obsv_model_w_v}
 \end{figure}
 
-\FloatBarrier
-\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/obsv_obj_alpha_v.eps}
+	\caption{Porównanie nachylenia obiektu z nachyleniem obserwatora.}
+	\label{fig:obsv_obj_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/obsv_obj_dalpha_v.eps}
+	\caption{Prędkość kątowa obserwatora dla rzeczywistego obiektu.}
+	\label{fig:obsv_obj_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/obsv_obj_w_v.eps}
+	\caption{Prędkość silnika obserwatora dla rzeczywistego obiektu.}
+	\label{fig:obsv_obj_w_v}
+\end{figure}
+
+\section{Regulator LQ}
+\label{sec:regulatorlq}
+Dla układu zlinearyzowanego opisanego macierzami \eqref{eq:linear_ABCD_val} obliczono macierz wzmocnień regulatora LQ. Regulator ten minimalizuje następujący wskaźnik jakości:
+\begin{equation}
+\begin{aligned}
+J&=\int\limits_0^{\infty}(x^TQx+u^TRu)dt\\
+Q&=\begin{bmatrix}
+1 & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+\end{bmatrix}\\
+R&=1
+\end{aligned}
+\end{equation}
+Postać macierzy Q wskazuje, że celem jest jak najszybsza stabilizacja nachylenia układu, bez względu na pozostałe zmienne stanu. Potrzebne obliczenia (rozwiązanie algebraicznego równania Riccatiego) zostały wykonane za pomocą funkcji programu \textit{MATLAB} - \textit{lqr}. Otrzymana macierz wzmocnień ma następującą postać:
+\begin{equation}
+K=\begin{bmatrix}
+-0.0861 & 0.4516 & 0.0030
+\end{bmatrix}
+\end{equation}
+Regulator ten został następnie zaimplementowany w programie \textit{Simulink}. Układ z tym regulatorem został przedstawiony na rysunku \ref{fig:helikopter_lq}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5.9in]{Figures/helikopter_lq.png}
+	\caption{Sterowanie układem z regulatorem LQ.}
+	\label{fig:helikopter_lq}
+\end{figure}
+
+Użyty blok \textit{MATLAB function} służy do wyliczenia wartości zmiennych stanu oraz sterowania w zadanym punkcie równowagi. \textit{Manual switch} pozwala na zmianę działania układu między sterowaniem na podstawie wyjścia obserwatora Luenbergera lub na podstawie właściwych zmiennych stanu modelu. Na wykresach od \ref{fig:LQ_model_alpha_v} do \ref{fig:LQ_model_w_v} przedstawiono przebieg zmiennych stanu modelu z regulatorem LQ dla zadania stabilizacji, kiedy na wejście regulatora podawany był właściwy wektor stanu obiektu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_alpha_v.eps}
+	\caption{Przebieg nachylenia układu z regulatorem LQ.}
+	\label{fig:LQ_model_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_dalpha_v.eps}
+	\caption{Przebieg prędkości kątowej układu z regulatorem LQ.}
+	\label{fig:LQ_model_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_w_v.eps}
+	\caption{Przebieg prędkości silnika układu z regulatorem LQ.}
+	\label{fig:LQ_model_w_v}
+\end{figure}
+
+Na wykresach od \ref{fig:LQ_model_03_alpha_v} do \ref{fig:LQ_model_03_w_v} przedstawiono przebieg zmiennych stanu modelu z regulatorem LQ dla zadania stabilizacji, kiedy na wejście regulatora podawany był właściwy wektor stanu obiektu. W tym wypadku jednak wartość zadana nie była punktem linearyzacji układu i wynosiła 0.3.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_03_alpha_v.eps}
+	\caption{Przebieg nachylenia układu z regulatorem LQ.}
+	\label{fig:LQ_model_03_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_03_dalpha_v.eps}
+	\caption{Przebieg prędkości kątowej układu z regulatorem LQ.}
+	\label{fig:LQ_model_03_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_03_w_v.eps}
+	\caption{Przebieg prędkości silnika układu z regulatorem LQ.}
+	\label{fig:LQ_model_03_w_v}
+\end{figure}
+
+Na wykresach od \ref{fig:LQ_model_obs_03_alpha_v} do \ref{fig:LQ_model_obs_03_w_v} przedstawiono przebieg zmiennych stanu modelu z regulatorem LQ dla zadania stabilizacji, kiedy na wejście regulatora podawany był wektor stanu obiektu obliczony z pomocą obserwatora Luenbergera. Wartość zadana nie była punktem linearyzacji układu i wynosiła 0.3.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_obs_03_alpha_v.eps}
+	\caption{Przebieg nachylenia układu z regulatorem LQ.}
+	\label{fig:LQ_model_obs_03_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_obs_03_dalpha_v.eps}
+	\caption{Przebieg prędkości kątowej układu z regulatorem LQ.}
+	\label{fig:LQ_model_obs_03_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQ_model_obs_03_w_v.eps}
+	\caption{Przebieg prędkości silnika układu z regulatorem LQ.}
+	\label{fig:LQ_model_obs_03_w_v}
+\end{figure}
+
+W tym wypadku widoczny jest wyraźny uchyb ustalony.
+
+\section{Regulator LQI}
+\label{sec:regulatorlqi}
+Dla układu zlinearyzowanego opisanego macierzami \eqref{eq:linear_ABCD_val} obliczono macierz wzmocnień regulatora LQI. Regulator ten minimalizuje następujący wskaźnik jakości:
+\begin{equation}
+\begin{aligned}
+J&=\int\limits_0^{\infty}(x^TQx+u^TRu)dt\\
+Q&=\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1
+\end{bmatrix}\\
+R&=1
+\end{aligned}
+\end{equation}
+\noindent gdzie:\newline
+\(x_4\) jest całką z uchybu kąta.
+\paragraph*{}
+Postać macierzy Q wskazuje, że celem jest jak najszybsza stabilizacja nachylenia układu oraz eliminacja uchybu ustalonego, bez względu na pozostałe zmienne stanu. Potrzebne obliczenia (rozwiązanie algebraicznego równania Riccatiego) zostały wykonane za pomocą funkcji programu \textit{MATLAB} - \textit{lqi}. Otrzymana macierz wzmocnień ma następującą postać:
+\begin{equation}
+K=\begin{bmatrix}
+0.3154 & 0.7105 & 0.0042 & -1
+\end{bmatrix}
+\end{equation}
+Regulator ten został następnie zaimplementowany w programie \textit{Simulink}. Układ z tym regulatorem został przedstawiony na rysunku \ref{fig:helikopter_lq}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5.9in]{Figures/helikopter_lqi.png}
+	\caption{Sterowanie układem z regulatorem LQI.}
+	\label{fig:helikopter_lqi}
+\end{figure}
+
+Użyty blok \textit{MATLAB function} służy do wyliczenia wartości zmiennych stanu oraz sterowania w zadanym punkcie równowagi. \textit{Manual switch} pozwala na zmianę działania układu między sterowaniem na podstawie wyjścia obserwatora Luenbergera lub na podstawie właściwych zmiennych stanu modelu. Można zauważyć również całkę odpowiedzialnych za wprowadzoną, sztuczną zmienną stanu. Na wykresach od \ref{fig:LQI_model_alpha_v} do \ref{fig:LQI_model_w_v} przedstawiono przebieg zmiennych stanu modelu z regulatorem LQI dla zadania stabilizacji, kiedy na wejście regulatora podawany był właściwy wektor stanu obiektu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_alpha_v.eps}
+	\caption{Przebieg nachylenia układu z regulatorem LQI.}
+	\label{fig:LQI_model_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_dalpha_v.eps}
+	\caption{Przebieg prędkości kątowej układu z regulatorem LQI.}
+	\label{fig:LQI_model_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_w_v.eps}
+	\caption{Przebieg prędkości silnika układu z regulatorem LQI.}
+	\label{fig:LQI_model_w_v}
+\end{figure}
+
+Na wykresach od \ref{fig:LQI_model_03_alpha_v} do \ref{fig:LQI_model_03_w_v} przedstawiono przebieg zmiennych stanu modelu z regulatorem LQI dla zadania stabilizacji, kiedy na wejście regulatora podawany był właściwy wektor stanu obiektu. W tym wypadku jednak wartość zadana nie była punktem linearyzacji układu i wynosiła 0.3.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_03_alpha_v.eps}
+	\caption{Przebieg nachylenia układu z regulatorem LQI.}
+	\label{fig:LQI_model_03_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_03_dalpha_v.eps}
+	\caption{Przebieg prędkości kątowej układu z regulatorem LQI.}
+	\label{fig:LQI_model_03_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_03_w_v.eps}
+	\caption{Przebieg prędkości silnika układu z regulatorem LQI.}
+	\label{fig:LQI_model_03_w_v}
+\end{figure}
+
+Na wykresach od \ref{fig:LQI_model_obs_03_alpha_v} do \ref{fig:LQI_model_obs_03_w_v} przedstawiono przebieg zmiennych stanu modelu z regulatorem LQI dla zadania stabilizacji, kiedy na wejście regulatora podawany był wektor stanu obiektu obliczony z pomocą obserwatora Luenbergera. Wartość zadana nie była punktem linearyzacji układu i wynosiła 0.3.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_obs_03_alpha_v.eps}
+	\caption{Przebieg nachylenia układu z regulatorem LQI.}
+	\label{fig:LQI_model_obs_03_alpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_obs_03_dalpha_v.eps}
+	\caption{Przebieg prędkości kątowej układu z regulatorem LQI.}
+	\label{fig:LQI_model_obs_03_dalpha_v}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4in]{Figures/LQI_model_obs_03_w_v.eps}
+	\caption{Przebieg prędkości silnika układu z regulatorem LQI.}
+	\label{fig:LQI_model_obs_03_w_v}
+\end{figure}
+
+Używając regulatora LQI udało się więc wyeliminować uchyb ustalony, który występował dla regulatora LQ.
+
 \section{Regulator PID}
-Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z zadaniem regulacji dla danego obiektu. W tym celu, na drodze doświadczalnej zaprojektowano układ regulacji składający się z dwóch regulatorów PID. Pierwszy z nich był odpowiedzialny za doprowadzenie obiektu w pobliże wartości zadanej tzn. $+- 10^0$, tłumiąc jednocześnie występujące w układzie oscylacje. Drugi natomiast był odpowiedzialny za pozycjonowanie helikoptera w zadanym położeniu. Schemat omawianego układu zaprezentowany jest na rysunku \ref{fig:pid_schemat}, natomiast wartości nastaw poszczególnych parametrów znajdują się w tabeli \ref{nastawy_pid} 
+Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z zadaniem regulacji dla danego obiektu. W tym celu, na drodze doświadczalnej zaprojektowano układ regulacji składający się z dwóch regulatorów PID. Pierwszy z nich był odpowiedzialny za doprowadzenie obiektu w pobliże wartości zadanej tzn. \(\pm\ang{10}\), tłumiąc jednocześnie występujące w układzie oscylacje. Drugi natomiast był odpowiedzialny za pozycjonowanie helikoptera w zadanym położeniu. Schemat omawianego układu zaprezentowany jest na rysunku \ref{fig:pid_schemat}, natomiast wartości nastaw poszczególnych parametrów znajdują się w tabeli \ref{nastawy_pid} 
 %Ze względu na charakterystyki obu regulatorów pierwszy miał małe wzmocnienie części całkującej i duże części różniczkującej,   
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.45]{Figures/PID_schemat.png}
+	\includegraphics[width=5.9in]{Figures/PID_schemat.png}
 	\caption{Schemat układu sterowania dla regulatorów PID.}
 	\label{fig:pid_schemat}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[ht]
 	\caption{Wartości nastaw regulatorów PID.}
 	\label{nastawy_pid}
 	\centering
@@ -721,7 +942,7 @@ Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/pid30.eps}
-	\caption{Działanie regulatora PID dla stabilizacji w położeniu $+30 ^0$.}
+	\caption{Działanie regulatora PID dla stabilizacji w położeniu \ang{30}.}
 	\label{fig:PID_30}
 \end{figure}
 
@@ -731,22 +952,22 @@ Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie 
 Działanie zaprojektowanych regulatorów zostało sprawdzone w następujących przypadkach: 
 \begin{enumerate}
 	\item działanie regulatorów LQ i LQI z i bez obserwatora,
-	\item pozycjonowanie w pozycji $0^0$,
-	\item pozycjonowanie w pozycji $+10^0$,
-	\item pozycjonowanie w pozycji $+20^0$,
+	\item pozycjonowanie w pozycji \ang{0},
+	\item pozycjonowanie w pozycji \ang{10},
+	\item pozycjonowanie w pozycji \ang{20},
 	\item stabilizacja układu dla regulatora LQ i sterowania początkowego wyliczonego w innym punkcie niż wartość zadana,
 	\item zadanie nadążania.
 \end{enumerate}
-Aby móc porównać jakość sterowania w każdym z wymienionych powyżej przypadków zdefiniowano całkowy wska\'znik jakość:
+Aby móc porównać jakość sterowania w każdym z wymienionych powyżej przypadków zdefiniowano całkowy wskaźnik jakość:
 \begin{equation}\label{key}
 J =\int_{0}^{T} e^2(t) dt
 \end{equation}
 
 \subsection{Porównanie działania regulatorów LQ i LQI z i bez obserwatora}
-W tym przypadku sprawdzono jak włączenie do układu regulacji obserwatora wpłynęło na jakość regulacji. Jak można zauważyć na rys. \ref{fig:por_LQ0, fig:por_LQ0obs} po zastosowaniu obserwatora przeregulowanie dla regulatora LQI zmalało z $23.28 ^0$ do $ 20.92$, natomiast dla regulatora LQ widać znaczącą redukcję oscylacji. Wartości wspa\'znika jakości dla wszystkich czterech przypadków znajdują się w tabeli \ref{obs_por_tab}.
+W tym przypadku sprawdzono jak włączenie do układu regulacji obserwatora wpłynęło na jakość regulacji. Jak można zauważyć na rys. \ref{fig:por_LQ0} i \ref{fig:por_LQ0obs} po zastosowaniu obserwatora przeregulowanie dla regulatora LQI zmalało z $23.28 ^0$ do $ 20.92$, natomiast dla regulatora LQ widać znaczącą redukcję oscylacji. Wartości wskaźnika jakości dla wszystkich czterech przypadków znajdują się w tabeli \ref{obs_por_tab}.
 
-\begin{table}[h]
-	\caption{Wska\'zniki jakości dla układu z i bez obserwatora.}
+\begin{table}[ht]
+	\caption{Wskaźniki jakości dla układu z i bez obserwatora.}
 	\label{obs_por_tab}
 	\centering
 	
@@ -768,22 +989,22 @@ W tym przypadku sprawdzono jak włączenie do układu regulacji obserwatora wpł
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/por_LQ0.eps}
-	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $0 ^0$ bez obserwatora.}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu \ang{0} bez obserwatora.}
 	\label{fig:por_LQ0}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/por_LQ0obs.eps}
-	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $0 ^0$ z obserwatorem.}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu \ang{0} z obserwatorem.}
 	\label{fig:por_LQ0obs}
 \end{figure}
 
-\subsection{Stabilizacja w położeniu $0^0$}
-W przypadku stabilizacji w położeniu $0^0$ porównano ze sobą wszystkie trzy typy regulatorów. Wartości wska\'znika jakości dla każdego z przypadków zamieszczone są w tabeli \ref{por_reg_0_tab}. Jak można zauważyć na rys. \ref{fig:por_LQPID_0} najlepiej z zadaniem stabilizacji poradził sobie regulator PID. 
+\subsection{Stabilizacja w położeniu \texorpdfstring{\ang{0}}{Lg}}
+W przypadku stabilizacji w położeniu \ang{0} porównano ze sobą wszystkie trzy typy regulatorów. Wartości wskaźnika jakości dla każdego z przypadków zamieszczone są w tabeli \ref{por_reg_0_tab}. Jak można zauważyć na rys. \ref{fig:por_LQPID_0} najlepiej z zadaniem stabilizacji poradził sobie regulator PID. 
 
-\begin{table}[h]
-	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $0^0$.}
+\begin{table}[ht]
+	\caption{Wskaźniki jakości dla stabilizacji w położeniu \ang{0}.}
 	\label{por_reg_0_tab}
 	\centering
 	
@@ -803,15 +1024,15 @@ W przypadku stabilizacji w położeniu $0^0$ porównano ze sobą wszystkie trzy 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/por_LQ0PID.eps}
-	\caption{Porównanie działania regulatora PID LQ i LQI dla stabilizacji w położeniu $+0 ^0$.}
+	\caption{Porównanie działania regulatora PID LQ i LQI dla stabilizacji w położeniu \ang{0}.}
 	\label{fig:por_LQPID_0}
 \end{figure}
 
-\subsection{Stabilizacja w położeniu $10^0$}
-Wartości wska\'znika jakości podane są w tabeli \ref{por_reg_10_tab}
+\subsection{Stabilizacja w położeniu \texorpdfstring{\ang{10}}{Lg}}
+Wartości wskaźnika jakości podane są w tabeli \ref{por_reg_10_tab}
 
-\begin{table}[h]
-	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $10^0$.}
+\begin{table}[ht]
+	\caption{Wskaźniki jakości dla stabilizacji w położeniu \ang{10}.}
 	\label{por_reg_10_tab}
 	\centering
 	
@@ -830,16 +1051,16 @@ Wartości wska\'znika jakości podane są w tabeli \ref{por_reg_10_tab}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/por_LQ18.eps}
-	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $+10 ^0$.}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu \ang{10}.}
 	\label{fig:por_LQ10}
 \end{figure}
 
-\subsection{Stabilizacja w położeniu $20^0$}
+\subsection{Stabilizacja w położeniu \texorpdfstring{\ang{20}}{Lg}}
 
-Wartości wska\'znika jakości podane są w tabeli \ref{por_reg_20_tab}
+Wartości wskaźnika jakości podane są w tabeli \ref{por_reg_20_tab}
 
-\begin{table}[h]
-	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $20^0$.}
+\begin{table}[ht]
+	\caption{Wskaźniki jakości dla stabilizacji w położeniu \ang{20}.}
 	\label{por_reg_20_tab}
 	\centering
 	
@@ -857,14 +1078,14 @@ Wartości wska\'znika jakości podane są w tabeli \ref{por_reg_20_tab}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/por_LQ9.eps}
-	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu $+20 ^0$.}
+	\caption{Porównanie działania regulatorów LQI i LQ dla stabilizacji w położeniu \ang{20}.}
 	\label{fig:por_LQ20}
 \end{figure}
 
-\subsection{Stabilizacja dla sterowania początkowego wyliczonego w innym punkcie niż wartość zadana.}
-Z tabeli \ref{por_reg_LQ_u0} i wykresu \ref{fig:por_LQ9_u} wynika, że zaniedbanie linearyzacji modelu rozważanego układu, w celu wyliczenia $u_0$ dla stabilizacji w różnych pozycjach, w znaczący sposób przekłada się na jakość sterowania. Odpowiednio wska\'znik jakości \textit{J} jak i również przeregulowanie i uchyb ustalony są gorsze dla regulatora zlinearyzowanego w położeniu $0^0$. 
-\begin{table}[h]
-	\caption{Wska\'zniki jakości dla stabilizacji w położeniu $20^0$ dla różnych wartości $u_0$.}
+\subsection{Stabilizacja dla sterowania wyliczonego w innym punkcie niż wartość zadana.}
+Z tabeli \ref{por_reg_LQ_u0} i wykresu \ref{fig:por_LQ9_u} wynika, że zaniedbanie linearyzacji modelu rozważanego układu, w celu wyliczenia $u_0$ dla stabilizacji w różnych pozycjach, w znaczący sposób przekłada się na jakość sterowania. Odpowiednio wskaźnik jakości \textit{J} jak i również przeregulowanie i uchyb ustalony są gorsze dla regulatora zlinearyzowanego w położeniu \ang{0}. 
+\begin{table}[ht]
+	\caption{Wskaźniki jakości dla stabilizacji w położeniu \ang{20} dla różnych wartości $u_0$.}
 	\label{por_reg_LQ_u0}
 	\centering
 	
@@ -872,9 +1093,9 @@ Z tabeli \ref{por_reg_LQ_u0} i wykresu \ref{fig:por_LQ9_u} wynika, że zaniedban
 		\hline
 		Punkt pracy &J\\
 		\hline
-		$0^0$ & $2.7635 \cdot 10 ^3$\\
+		\ang{0} & $2.7635 \cdot 10 ^3$\\
 		\hline
-		$20^0$ & $2.7306 \cdot 10 ^3$\\
+		\ang{20} & $2.7306 \cdot 10 ^3$\\
 		\hline
 	\end{tabular}
 \end{table}
@@ -882,7 +1103,7 @@ Z tabeli \ref{por_reg_LQ_u0} i wykresu \ref{fig:por_LQ9_u} wynika, że zaniedban
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/porLQ9_u.eps}
-	\caption{Porównanie działania regulatora LQ dla stabilizacji w położeniu $+20 ^0$ dla sterowania początkowego wyliczonego w punkcie $0^0$ i $20^0$.}
+	\caption{Porównanie działania regulatora LQ dla stabilizacji w położeniu \ang{20} dla sterowania początkowego wyliczonego w punkcie \ang{0} i \ang{20}.}
 	\label{fig:por_LQ9_u}
 \end{figure}
 
@@ -895,7 +1116,7 @@ Z tabeli \ref{por_reg_LQ_u0} i wykresu \ref{fig:por_LQ9_u} wynika, że zaniedban
 %\end{figure}
 
 \subsection{Zadanie nadążania}
-Na podstawie wykresu \ref{fig:por_foll_LQILQ} wynika, że regulator LQI poradził sobie zdecydowanie lepiej z zadaniem nadążania niż regulator LQ. Opó\'znienie pomiędzy wartością zadaną, a pozycją helikoptera wynosi dla regulatora LQI $2.22 \ s$, natomiast dla regulatora LQ $12.3 \ s$. Amplituda w przypadku LQI odbiega od zadanej maksymalnie o $19.2 \ \%$, a w przypadku regulatora LQ nawet o $107 \ \%$. 
+Na podstawie wykresu \ref{fig:por_foll_LQILQ} wynika, że regulator LQI poradził sobie zdecydowanie lepiej z zadaniem nadążania niż regulator LQ. Opóźnienie pomiędzy wartością zadaną, a pozycją helikoptera wynosi dla regulatora LQI $2.22 \ s$, natomiast dla regulatora LQ $12.3 \ s$. Amplituda w przypadku LQI odbiega od zadanej maksymalnie o $19.2 \ \%$, a w przypadku regulatora LQ nawet o $107 \ \%$. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4in]{Figures/por_foll_LQLQI.eps}
@@ -907,157 +1128,10 @@ Na podstawie wykresu \ref{fig:por_foll_LQILQ} wynika, że regulator LQI poradzi�
 Podsumowując wszystkie eksperymenty można stwierdzić, że regulator LQI poprzez zastosowanie członu całkującego dobrze niwelował uchyb ustalony. Niestety wykorzystanie całki znacznie zwiększyło przeregulowanie. Prawdopodobnie zastosowanie w strukturze regulatora filtru typu \textit{wind-up} mogło by zmniejszyć wartość tego parametru. Zdecydowanie mniejsze przeregulowanie otrzymano przy wykorzystaniu klasycznego regulatora LQ, jednak wiązało się to występowaniem uchybu w stanie ustalonym. \\
 Regulator PID bardzo dobrze poradził sobie z zadaniem stabilizacji, jednak ze względu na duże nieliniowości występujące w układzie, wymagałby on każdorazowego dostrajania dla różnych wartości zadanego położenia. \\
 Eksperyment stabilizacji w innym punkcie niż została przeprowadzona linearyzacja potwierdził nasze przypuszczenia, że nieliniowość układu będzie pogarszała jakość sterowania wraz z oddalaniem się od punktu linearyzacji.\\
-Dla zadania nadążania zdecydowanie najlepszym regulatorem okazał się być regulator LQI. Wprowadził on co prawda opó\'znienie jednak zachował amplitudę sygnału zadanego.
+Dla zadania nadążania zdecydowanie najlepszym regulatorem okazał się być regulator LQI. Wprowadził on co prawda opóźnienie jednak zachował amplitudę sygnału zadanego.
 %\section{Regulator LQ}
 %\label{sec:regulatorlq}
-%Dla układu zlinearyzowanego opisanego równaniem \eqref{eq:linearized} obliczono macierz wzmocnień regulatora LQ. Regulator ten minimalizuje następujący wskaźnik jakości:
-%\begin{equation}
-%\begin{aligned}
-%J&=\int\limits_0^{\infty}(x^TQx+u^TRu)dt\\
-%Q&=\begin{bmatrix}
-%1 & 0 & 0\\
-%0 & 1 & 0\\
-%0 & 0 & 1
-%\end{bmatrix}\\
-%R&=1
-%\end{aligned}
-%\end{equation}
-%Potrzebne obliczenia (rozwiązanie algebraicznego równania Riccatiego) zostały wykonane za pomocą funkcji programu \textit{Matlab} - \textit{lqr}. Otrzymana macierz wzmocnień ma następującą postać:
-%\begin{equation}
-%K=\begin{bmatrix}
-%-154.245 & -5.940 & 0.734
-%\end{bmatrix}
-%\end{equation}
-%Regulator ten został następnie zaimplementowany w programie \textit{Simulink}. Układ z tym regulatorem został przedstawiony na rysunku \ref{fig:lewitacja_lq}.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=5.5in]{Figures/Lewitacja_LQ.eps}
-%	\caption{Układ sterowania lewitacją magnetyczną z regulatorem LQ.}
-%	\label{fig:lewitacja_lq}
-%\end{figure}
-%
-%Najpierw przetestowano zadanie stabilizacji modelu układu w odległości 10 mm. Zostało one przedstawione na wykresach od \ref{fig:model_LQ_x1} do \ref{fig:model_LQ_u}.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/model_LQ_x1.eps}
-%	\caption{Zadanie stabilizacji modelu z regulatorem LQ - położenie sfery.}
-%	\label{fig:model_LQ_x1}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/model_LQ_x2.eps}
-%	\caption{Zadanie stabilizacji modelu z regulatorem LQ - prędkość sfery.}
-%	\label{fig:model_LQ_x2}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/model_LQ_x3.eps}
-%	\caption{Zadanie stabilizacji modelu z regulatorem LQ - prąd cewki.}
-%	\label{fig:model_LQ_x3}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/model_LQ_u.eps}
-%	\caption{Zadanie stabilizacji modelu z regulatorem LQ - sterowanie.}
-%	\label{fig:model_LQ_u}
-%\end{figure}
-%
-%Regulator LQ stabilizował model, lecz można zauważyć duży uchyb ustalony. Następnie przeprowadzono doświadczenie na rzeczywistym układzie. Pierwszym zadaniem również była stabilizacja układu w odległości 10 mm. Zostało one przedstawione na wykresach od \ref{fig:LQ_stab_pos} do \ref{fig:LQ_stab_con}.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_stab_pos.eps}
-%	\caption{Zadanie stabilizacji układu z regulatorem LQ - położenie sfery.}
-%	\label{fig:LQ_stab_pos}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_stab_vel.eps}
-%	\caption{Zadanie stabilizacji układu z regulatorem LQ - prędkość sfery.}
-%	\label{fig:LQ_stab_vel}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_stab_cur.eps}
-%	\caption{Zadanie stabilizacji układu z regulatorem LQ - prąd cewki.}
-%	\label{fig:LQ_stab_cur}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_stab_con.eps}
-%	\caption{Zadanie stabilizacji układu z regulatorem LQ - sterowanie.}
-%	\label{fig:LQ_stab_con}
-%\end{figure}
-%
-%Następnie przetestowano odpowiedź skokową układu. W tym celu poczekano na ustabilizowanie pozycji sfery, a następnie skokowo zmieniono wartość zadaną. Wykresy od \ref{fig:LQ_step_pos} do \ref{fig:LQ_step_con} przedstawiają zarejestrowaną odpowiedź skokową.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_step_pos.eps}
-%	\caption{Odpowiedź skokowa układu z regulatorem LQ - położenie sfery.}
-%	\label{fig:LQ_step_pos}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_step_vel.eps}
-%	\caption{Odpowiedź skokowa układu z regulatorem LQ - prędkość sfery.}
-%	\label{fig:LQ_step_vel}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_step_cur.eps}
-%	\caption{Odpowiedź skokowa układu z regulatorem LQ - prąd cewki.}
-%	\label{fig:LQ_step_cur}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_step_con.eps}
-%	\caption{Odpowiedź skokowa układu z regulatorem LQ - sterowanie.}
-%	\label{fig:LQ_step_con}
-%\end{figure}
-%
-%Wykresy \ref{fig:LQ_stab_pos} i \ref{fig:LQ_step_pos} potwierdzają to, co zauważono w odpowiedziach modelu dla regulatora LQ. Przy zastosowaniu tego regulatora występuje duży uchyb ustalony. Porównując odpowiedzi modelu i rzeczywistego układu można również wnioskować, że w układzie występują znacznie większe zakłócenia, niż dodane w modelu. Postanowiono również zbadać działanie regulatora LQ dla zadania nadążania. W tym wypadku jako pozycję zadaną podawano funkcję \(0.01+0.002\sin(2\pi t)\), gdzie t oznacza czas. Zadanie nadążania zostało przedstawione na wykresach od \ref{fig:LQ_sin_pos} do \ref{fig:LQ_sin_con}.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_sin_pos.eps}
-%	\caption{Zadanie nadążania układu z regulatorem LQ - położenie sfery.}
-%	\label{fig:LQ_sin_pos}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_sin_vel.eps}
-%	\caption{Zadanie nadążania układu z regulatorem LQ - prędkość sfery.}
-%	\label{fig:LQ_sin_vel}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_sin_cur.eps}
-%	\caption{Zadanie nadążania układu z regulatorem LQ - prąd cewki.}
-%	\label{fig:LQ_sin_cur}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=4.5in]{Figures/LQ_sin_con.eps}
-%	\caption{Zadanie nadążania układu z regulatorem LQ - sterowanie.}
-%	\label{fig:LQ_sin_con}
-%\end{figure}
-%
-%Na podstawie powyższych wykresów można zaobserwować, że amplituda położenia sfery jest większa niż amplituda pozycji zadanej. Oprócz tego są one względem siebie przesunięte w fazie. Zauważalne jest również zniekształcenie sinusoidy spowodowane nieliniowością systemu lewitacji magnetycznej.
+
 %
 %\section{Regulator LQI}
 %\label{sec:regulatorlqi}

@@ -355,7 +355,7 @@ K_lqi = lqi(lin_sys, Q, R, N);
 
 %% Pe³ny obserwator Luenbergera dla modelu liniowego
 obs = obsv(lin_A, lin_C);
-R_ob = rank(ob);
+R_ob = rank(obs);
 lambda = [-3 -2 -1]*3;
 L = place(lin_A.', lin_C.', lambda).';
 
@@ -381,3 +381,24 @@ xlabel('Czas [s]');
 ylabel('Prêdkoœæ silnika [rad/s]');
 grid on;
 legend('Model','Obserwator');
+
+%%
+t=(0:length(sim_alpha_v)-1)/fs;
+figure(19);
+plot(t,sim_alpha_v(:,1));
+title('Regulator LQI - nachylenie');
+xlabel('Czas [s]');
+ylabel('Po³o¿enie k¹towe [rad]');
+grid on;
+figure(20);
+plot(t,sim_dalpha_v(:,1));
+title('Regulator LQI - prêdkoœæ k¹towa');
+xlabel('Czas [s]');
+ylabel('Prêdkoœæ k¹towa [rad/s]');
+grid on;
+figure(21);
+plot(t,sim_w_v(:,1));
+title('Regulator LQI - prêdkoœæ silnika');
+xlabel('Czas [s]');
+ylabel('Prêdkoœæ silnika [rad/s]');
+grid on;
