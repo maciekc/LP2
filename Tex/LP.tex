@@ -75,7 +75,7 @@
 
 \author{Marcin Kowalczyk \\ Maciej Cebula \\ Daniel Rubak} % Author name
 
-\date{26 listopad, 2017} % Date for the report
+\date{Kraków, 2017} % Date for the report
 
 \begin{document}
 
@@ -83,18 +83,34 @@
 
 \begin{center}
 \begin{tabular}{l r}
-Data wykonania: & 21 listopad, 2017 \\ % Date the experiment was performed
+Data wykonania: & 19 grudzień, 2017 \\ % Date the experiment was performed
 Przedmiot: & Laboratorium Problemowe 2 \\
 Prowadzący: & Dawid Knapik % Instructor/supervisor
 \end{tabular}
 \end{center}
 
+\clearpage
+\tableofcontents
+\clearpage
+
 \section{Wstęp}
 \label{sec:wstep}
-Celem projektu było zaprojektowanie systemu sterowania dla układu dwóch rotorów w osiach prostopadłych (model helikoptera). Działanie układu opiera się na generowaniu momentów sił przez obracające się śmigła zamontowane na silnikach prądu stałego. Momenty sił generowane przez grawitację mają być równoważone przez wytworzony moment siły. Moment siły wytwarzany przez silnik jest zależny od współczynnika wypełnienia sygnału PWM podawanego na silnik. Układ umożliwia pomiar orientacji obiektu i prędkości obrotowych silników prądu stałego, sterowanie napięciem podawanym na silniki oraz umożliwia współpracę z urządzeniami sterującymi. Do pomiaru orientacji służą enkodery przyrostowe, natomiast do pomiaru prędkości służą prądnice tachometryczne, w których wytworzone napięcie jest proporcjonalne do mierzonej prędkości obrotowej. Na początku postanowiono wykonać układ sterowania dla helikoptera z zablokowaną osią pionową.
+\subsection{Założenia}
+Celem projektu było zaprojektowanie układu regulacji dla przybliżonego modelu helikoptera przedstawionego na rysunku \ref {heli_model}. Zaproponowany regulator powinien zapewnić stabilizację układu w zadanym położeniu oraz umożliwić śledzenie zadanej trajektorii. 
+\subsection{Opis obiektu}
+Do zmiany pozycji obiektu wykorzystywane były dwa niezależnie działające śmigła, zamontowane w dwóch prostopadłych osiach. Układu regulacji działa na zasadzie generowania momentu sił, pochodzących od obracających się śmigieł, w celu zniwelowania momentów wytworzonych przez siłę grawitacji oraz siłę odśrodkową. Moment siły wytwarzany przez silnik jest zależny od współczynnika wypełnienia sygnału PWM podawanego na niego. Tachoprądnice dołączone do każdego z silników oraz enkodery inkrementalne zamontowane w osiach obrotu  zapewniają pomiar orientacji obiektu i prędkości obrotowych silników prądu stałego. Połączenie wszystkich czujników z komputerem, na którym zainstalowano środowisko \textit{Matlab/Simulink}, poprzez kartę pomiarową, umożliwiło sterowanie całym procesem z poziomu \textit{Simulink-a}. W początkowej fazie projektu zdecydowano się wykonać układ sterowania dla helikoptera z zablokowaną osią pionową. 
 
-Do symulacji, obliczeń numerycznych i generowania kodu wykorzystano programy \textit{Matlab} i \textit{Simulink}. Wygenerowany kod jest wykonywany w czasie rzeczywistym. Możliwa jest również zmiana parametrów układu sterowania (np. pozycji zadanej) w czasie pracy układu. Mierzone wielkości są również wyświetlane na bieżąco w programie \textit{Simulink}.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.4]{Figures/model_helikoptera.eps}
+	\caption		
+	{Helikopter - schemat obiektu sterowania}
+	\label{heli_model}
+\end{figure} 
+Do symulacji, obliczeń numerycznych i generowania kodu wykorzystano programy \textit{Matlab} i \textit{Simulink}, które wykonywały cały algorytm sterujący w czasie rzeczywistym. \'Srodowisko ponad to umożliwia zmianę parametrów układu sterowania (np. pozycji zadanej) w trakcie działania systemu oraz łatwy sposób archiwizacji i wizualizacji danych pomiarowych.
+
+\FloatBarrier
 \section{Model matematyczny}
 \label{sec:modelmatematyczny}
 Wykorzystano następujący model matematyczny układu dla osi poziomej:
@@ -170,7 +186,7 @@ Opisany w tym rozdziale model dla osi poziomej został zaimplementowany w progra
 Zagadnienie identyfikacji modeli nieliniowych jest bardzo często zagadnieniem problematycznym. Dla modeli liniowych wystarczy zazwyczaj wykorzystać metodę najmniejszych kwadratów. Dla modelu nieliniowego metoda ta daje na ogół obciążoną estymację parametrów, a rozwiązanie zadania może być niejednoznaczne. Oprócz tego zadanie to jest skomplikowane pod względem numerycznym, gdyż rozwiązywania nieliniowych równań różniczkowych jest złożone obliczeniowo. Aby ułatwić identyfikację należy zdekomponować ją na znacznie prostsze zadania. Dzięki temu identyfikacja modelu nieliniowego sprowadza się do wykonania kilkudziesięciu pomiarów oraz odpowiednich przekształceń algebraicznych.
 
 \subsection{Prędkość kątowa z prądnicy tachometrycznej}
-W pierwszej kolejności konieczne było przeliczenie napięcia z prądnicy tachometrycznej na prędkość kątową w radianach na sekundę. W tym celu wykorzystano dostępną dokumentację oraz zmierzone dane. Dla danej wartości współczynnika wypełnienia PWM odczytywano multimetrem napięcie na wyprowadzeniach z prądnicy tachometrycznej oraz wartość wyświetlaną w \textit{Simulink}. W dokumentacji sprawdzono jak należy przeliczyć napięcie prądnicy tachometrycznej na prędkość kątową. Punkty pomiarowe następnie aproksymowano wielomianem pierwszego stopnia. Wyniki zostały zaprezentowane na rysunku \ref{fig:char_V_U}.
+W pierwszej kolejności konieczne było przeliczenie napięcia z prądnicy tachometrycznej na prędkość kątową w radianach na sekundę. W tym celu wykorzystano dostępną dokumentację oraz zebrane pomiary. Dla danej wartości współczynnika wypełnienia PWM odczytywano multimetrem napięcie na wyprowadzeniach z prądnicy tachometrycznej oraz wartość wyświetlaną w \textit{Simulink}. W dokumentacji sprawdzono jak należy przeliczyć napięcie prądnicy tachometrycznej na prędkość kątową. Punkty pomiarowe następnie aproksymowano wielomianem pierwszego stopnia. Wyniki zostały zaprezentowane na rysunku \ref{fig:char_V_U}.
 
 \begin{figure}[H]
 	\centering
@@ -191,14 +207,14 @@ V = \frac{2000\pi}{0.52\cdot 60}(0.1644V_S+0.0019)
 \subsection{Moment niewyważenia}
 Wykonano badanie momentu niewyważenia, który powodował,że kiedy na układ nie działały żadne dodatkowe siły, to nie znajdował się on w pozycji poziomej. Rozpoczęto od zgrubnego wyznaczenia kąta równowagi w płaszczyźnie pionowej. W tym celu użyto elektronicznej "poziomicy" w postaci telefonu komórkowego. Wyznaczony kąt miał wartość:
 \begin{equation}
-\alpha_{v0} = -0.491
+\alpha_{v0} = -0.491 \ rad
 \end{equation}
 Następnie wykorzystano równanie \eqref{eq:moment_niewywazenia} do wyznaczenia zależności momentu niewyważenia od kąta nachylenia (parametru \(a\)).
 \begin{equation}
 J_v \frac{d^2\alpha_v}{dt^2} = -f_v\frac{d\alpha_v}{dt}+a\cdot \sin(\alpha_v-\alpha_{v0})+M_v(\omega_v)
 \label{eq:moment_niewywazenia}
 \end{equation}
-W pewnej odległości \(l\) od osi obrotu przyłożono siłę (pochodzącą od zawieszonych ciężarków), której moment był przeciwny do momentu niewyważenia. Wagę ciężarków dobrano tak, by powstały moment równoważył niewyważenie dla kąta \(\alpha_v=0\). Kąt ten nie zmienia się, a więc jego pochodne są równe \(0\). Można więc zapisać równania \eqref{eq:M_zew} opisujące równowagę sił w tej sytuacji.
+W pewnej odległości \(l\) od osi obrotu przyłożono siłę (pochodzącą od zawieszonych ciężarków), której moment był przeciwny do momentu niewyważenia. Wagę ciężarków dobrano tak, by powstały moment równoważył niewyważenie dla kąta \(\alpha_v=0 \ rad \). Kąt ten nie zmienia się, a więc jego pochodne są równe \(0\). Można więc zapisać równania \eqref{eq:M_zew} opisujące równowagę sił w tej sytuacji.
 \begin{equation}
 \begin{aligned}
 M_{zew} &= -a\cdot \sin(\alpha_v-\alpha_{v0})\\
@@ -347,7 +363,7 @@ f_v &= 0.0042\si{Nm.s}\\
 \end{equation}
 
 \subsection{Zależność oporów ruchu od prędkości obrotowej śmigła bocznego}
-Następnie zbadano wpływ prędkości obrotowej silnika na napięcie podawane na silnik dl osi pionowej. Podobnie jak dla osi poziomej, większa prędkość obrotowa powoduje większe opory, przez co mniejsze napięcie pod awane jest na silnik. Opisuje to równanie \eqref{eq:domega_h}.
+Następnie zbadano wpływ prędkości obrotowej silnika na napięcie podawane na silnik dl osi pionowej. Podobnie jak dla osi poziomej, większa prędkość obrotowa powoduje większe opory, przez co mniejsze napięcie podawane jest na silnik. Opisuje to równanie \eqref{eq:domega_h}.
 \begin{equation}
 I_h\frac{d\omega_h}{dt} = u_h - H_h^{-1}(\omega_h)
 \label{eq:domega_h}
@@ -910,7 +926,7 @@ Na wykresach od \ref{fig:LQI_model_obs_03_alpha_v} do \ref{fig:LQI_model_obs_03_
 Używając regulatora LQI udało się więc wyeliminować uchyb ustalony, który występował dla regulatora LQ.
 
 \section{Regulator PID}
-Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z zadaniem regulacji dla danego obiektu. W tym celu, na drodze doświadczalnej zaprojektowano układ regulacji składający się z dwóch regulatorów PID. Pierwszy z nich był odpowiedzialny za doprowadzenie obiektu w pobliże wartości zadanej tzn. \(\pm\ang{10}\), tłumiąc jednocześnie występujące w układzie oscylacje. Drugi natomiast był odpowiedzialny za pozycjonowanie helikoptera w zadanym położeniu. Schemat omawianego układu zaprezentowany jest na rysunku \ref{fig:pid_schemat}, natomiast wartości nastaw poszczególnych parametrów znajdują się w tabeli \ref{nastawy_pid} 
+Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z zadaniem regulacji dla danego obiektu. W tym celu, na drodze doświadczalnej zaprojektowano układ regulacji składający się z dwóch regulatorów PID. Pierwszy z nich był odpowiedzialny za doprowadzenie obiektu w pobliże wartości zadanej tzn. \(\pm\ang{10}\), tłumiąc jednocześnie występujące w układzie oscylacje. Drugi natomiast zapewniał pozycjonowanie helikoptera w zadanym położeniu. Schemat omawianego układu zaprezentowany jest na rysunku \ref{fig:pid_schemat}, natomiast wartości nastaw poszczególnych parametrów znajdują się w tabeli \ref{nastawy_pid} 
 %Ze względu na charakterystyki obu regulatorów pierwszy miał małe wzmocnienie części całkującej i duże części różniczkującej,   
 
 \begin{figure}[H]
@@ -937,7 +953,7 @@ Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z za
 \end{table}
 
 Ze względu na to, że zadaniem pierwszego regulatora było jak najszybsze doprowadzenie obiektu w okolice wartości zadanej i wyeliminowanie oscylacji, to wartość wzmocnienia części różniczkującej jest większa niż w przypadku drugiego regulatora. Analogiczna zależność zachodzi dla regulatora nr 2 i części całkującej, której to wartości jest większa niż w pierwszym przypadku. \\
-Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie członu całkującego regulatora nr 2, w momencie gdy ten nie był aktywny. Na drodze przeprowadzonych eksperymentów  ustalono, że najlepiej będzie podawać na ten regulator 0.1 wartości uchybu gdy jest on nieaktywny. Dzięki temu człon całkujący nie osiągał aż tak dużej wartości, która wprowadziłaby do układu oscylacje i jednocześnie był na tyle duży aby zaraz po aktywacji omawianego regulatora generować sterowanie sprowadzające układ do wartości zadanej.  Na rysunku \ref{fig:PID_30} zaprezentowano działanie całego układu.
+Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie członu całkującego regulatora nr 2, w momencie gdy ten nie był aktywny. Na drodze przeprowadzonych eksperymentów  ustalono, że najlepiej będzie podawać na ten regulator 0.1 wartości uchybu sytuacji gdy jest on nieaktywny. Dzięki temu człon całkujący nie osiągał aż tak dużej wartości, która wprowadziłaby do układu oscylacje, i jednocześnie generował na tyle duże sterowanie, że układ był sprowadzany do zadanej pozycji od momentu aktywacji regulatora.  Na rysunku \ref{fig:PID_30} zaprezentowano działanie całego układu.
 
 \begin{figure}[H]
 	\centering
@@ -1125,10 +1141,13 @@ Na podstawie wykresu \ref{fig:por_foll_LQILQ} wynika, że regulator LQI poradzi�
 \end{figure}
 
 \subsection{Wnioski}
-Podsumowując wszystkie eksperymenty można stwierdzić, że regulator LQI poprzez zastosowanie członu całkującego dobrze niwelował uchyb ustalony. Niestety wykorzystanie całki znacznie zwiększyło przeregulowanie. Prawdopodobnie zastosowanie w strukturze regulatora filtru typu \textit{wind-up} mogło by zmniejszyć wartość tego parametru. Zdecydowanie mniejsze przeregulowanie otrzymano przy wykorzystaniu klasycznego regulatora LQ, jednak wiązało się to występowaniem uchybu w stanie ustalonym. \\
+Podsumowując wszystkie eksperymenty można stwierdzić, że regulator LQI poprzez zastosowanie członu całkującego dobrze niwelował uchyb ustalony. Niestety, wykorzystanie całki znacznie zwiększyło przeregulowanie. Efekt ten mógłby być prawdopodobnie zniwelowany poprzez zastosowanie strukturze regulatora filtru typu \textit{wind-up}, jednak z powodu braku czasu nie udało się przeprowadzić eksperymentu potwierdzającego tą tezę. Zdecydowanie mniejsze przeregulowanie otrzymano przy wykorzystaniu klasycznego regulatora LQ, jednak wiązało się to występowaniem uchybu w stanie ustalonym. \\
 Regulator PID bardzo dobrze poradził sobie z zadaniem stabilizacji, jednak ze względu na duże nieliniowości występujące w układzie, wymagałby on każdorazowego dostrajania dla różnych wartości zadanego położenia. \\
 Eksperyment stabilizacji w innym punkcie niż została przeprowadzona linearyzacja potwierdził nasze przypuszczenia, że nieliniowość układu będzie pogarszała jakość sterowania wraz z oddalaniem się od punktu linearyzacji.\\
-Dla zadania nadążania zdecydowanie najlepszym regulatorem okazał się być regulator LQI. Wprowadził on co prawda opóźnienie jednak zachował amplitudę sygnału zadanego.
+Dla zadania nadążania zdecydowanie najlepszym regulatorem okazał się być regulator LQI. Wprowadził on co prawda niewielkie opóźnienie, jednak zachował amplitudę sygnału zadanego.
+
+\section{Podsumowanie}
+Zrealizowanie projektu okazało się być ciekawym i jednocześnie wymagającym wyzwaniem. Nieliniowa struktura obiektu wymusiła na nas zastosowanie rozbudowanej procedury optymalizacji w celu stworzenia modelu matematycznego. Wyznaczone na jego podstawie regulatory LQ i LQI w zadawalający sposób realizowały postawione we wstępie zadania sterowania. Zaprojektowanie dodatkowego regulatora PID pokazało, że nawet dla tak złożonego systemu jesteśmy w wstanie zaproponować szybkie rozwiązanie, realizujące zadanie stabilizacji w wybranym położeniu. Przeprowadzenie eksperymentów stabilizacji układu zdala od punktu linearyzacji uwidoczniło konieczności prawidłowej linearyzacji układów nieliniowych.   
 %\section{Regulator LQ}
 %\label{sec:regulatorlq}
 
