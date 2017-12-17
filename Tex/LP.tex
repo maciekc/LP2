@@ -71,7 +71,7 @@
 
 %\usepackage{times} % Uncomment to use the Times New Roman font
 
-\title{\textbf{Lewitacja magnetyczna}} % Title
+\title{\textbf{Model helikoptera}} % Title
 
 \author{Marcin Kowalczyk \\ Maciej Cebula \\ Daniel Rubak} % Author name
 
@@ -98,7 +98,7 @@ Prowadzący: & Dawid Knapik % Instructor/supervisor
 \subsection{Założenia}
 Celem projektu było zaprojektowanie układu regulacji dla przybliżonego modelu helikoptera przedstawionego na rysunku \ref {heli_model}. Zaproponowany regulator powinien zapewnić stabilizację układu w zadanym położeniu oraz umożliwić śledzenie zadanej trajektorii. 
 \subsection{Opis obiektu}
-Do zmiany pozycji obiektu wykorzystywane były dwa niezależnie działające śmigła, zamontowane w dwóch prostopadłych osiach. Układu regulacji działa na zasadzie generowania momentu sił, pochodzących od obracających się śmigieł, w celu zniwelowania momentów wytworzonych przez siłę grawitacji oraz siłę odśrodkową. Moment siły wytwarzany przez silnik jest zależny od współczynnika wypełnienia sygnału PWM podawanego na niego. Tachoprądnice dołączone do każdego z silników oraz enkodery inkrementalne zamontowane w osiach obrotu  zapewniają pomiar orientacji obiektu i prędkości obrotowych silników prądu stałego. Połączenie wszystkich czujników z komputerem, na którym zainstalowano środowisko \textit{Matlab/Simulink}, poprzez kartę pomiarową, umożliwiło sterowanie całym procesem z poziomu \textit{Simulink-a}. W początkowej fazie projektu zdecydowano się wykonać układ sterowania dla helikoptera z zablokowaną osią pionową. 
+Do zmiany pozycji obiektu wykorzystywane były dwa niezależnie działające śmigła, zamontowane w dwóch prostopadłych osiach. Układ regulacji działa na zasadzie generowania momentu sił, pochodzących od obracających się śmigieł, w celu zniwelowania momentów wytworzonych przez siłę grawitacji oraz siłę odśrodkową. Moment siły wytwarzany przez silnik jest zależny od współczynnika wypełnienia sygnału PWM podawanego na niego. Tachoprądnice dołączone do każdego z silników oraz enkodery inkrementalne zamontowane w osiach obrotu  zapewniają pomiar orientacji obiektu i prędkości obrotowych silników prądu stałego. Połączenie wszystkich czujników z komputerem, na którym zainstalowano środowisko \textit{Matlab/Simulink}, poprzez kartę pomiarową, umożliwiło sterowanie całym procesem z poziomu \textit{Simulink-a}. W początkowej fazie projektu zdecydowano się wykonać układ sterowania dla helikoptera z zablokowaną osią pionową. 
 
 
 \begin{figure}[h!]
@@ -108,7 +108,7 @@ Do zmiany pozycji obiektu wykorzystywane były dwa niezależnie działające śm
 	{Helikopter - schemat obiektu sterowania}
 	\label{heli_model}
 \end{figure} 
-Do symulacji, obliczeń numerycznych i generowania kodu wykorzystano programy \textit{Matlab} i \textit{Simulink}, które wykonywały cały algorytm sterujący w czasie rzeczywistym. \'Srodowisko ponad to umożliwia zmianę parametrów układu sterowania (np. pozycji zadanej) w trakcie działania systemu oraz łatwy sposób archiwizacji i wizualizacji danych pomiarowych.
+Do symulacji, obliczeń numerycznych i generowania kodu wykorzystano programy \textit{Matlab} i \textit{Simulink}, które wykonywały cały algorytm sterujący w czasie rzeczywistym. \'Co więcej, środowisko to umożliwia zmianę parametrów układu sterowania (np. pozycji zadanej) w trakcie działania systemu oraz łatwy sposób archiwizacji i wizualizacji danych pomiarowych.
 
 \FloatBarrier
 \section{Model matematyczny}
@@ -334,7 +334,7 @@ Wyznaczony parametr miał następującą wartość:
 I_v = 0.0017\si{kg.m^2}
 \end{equation}
 
-\subsection{Moment bezwładności kładu dla osi poziomej}
+\subsection{Moment bezwładności układu dla osi poziomej}
 Ostatnimi koniecznymi do zbadania parametrami dla układu w płaszczyźnie pionowej były jego moment bezwładności, współczynnik tarcia lepkiego oraz dokładna wartość kąta równowagi układu. Wielkości te zostały wyznaczone na podstawie równania \eqref{eq:ident_J_v}.
 \begin{equation}
 J_v \frac{d^2\alpha_v}{dt^2} = -f_v\frac{d\alpha_v}{dt}+a\cdot sin(\alpha_v-\alpha_{v0})+M_v(\omega_v)
@@ -344,7 +344,7 @@ Identyfikację tej części przeprowadzano wprowadzając układ w drgania wokó�
 \begin{equation}
 J_v \frac{d^2\alpha_v}{dt^2} = -f_v\frac{d\alpha_v}{dt}+a\cdot sin(\alpha_v-\alpha_{v0})
 \end{equation}
-Zapisano przebieg kąta wychylenia układu podczas eksperymentu. Następnie szukano parametrów \(J_v\), \(f_v\) oraz \(alpha_{v0}\) takich, by minimalizowały średniokwadratowy wskaźnik jakości. Wykorzystano do tego funkcję \textit{lsqnonlin} programu \textit{MATLAB}. Na rysunku \ref{fig:ident_J_v} kolorem niebieskim przedstawiono zarejestrowany przebieg, a kolorem czerwonym odpowiedź aproksymowanego modelu.
+Zapisano przebieg kąta wychylenia układu podczas eksperymentu. Następnie szukano parametrów \(J_v\), \(f_v\) oraz \(\alpha_{v0}\) takich, by minimalizowały średniokwadratowy wskaźnik jakości. Wykorzystano do tego funkcję \textit{lsqnonlin} programu \textit{MATLAB}. Na rysunku \ref{fig:ident_J_v} kolorem niebieskim przedstawiono zarejestrowany przebieg, a kolorem czerwonym odpowiedź aproksymowanego modelu.
 
 \begin{figure}[H]
 	\centering
@@ -363,7 +363,7 @@ f_v &= 0.0042\si{Nm.s}\\
 \end{equation}
 
 \subsection{Zależność oporów ruchu od prędkości obrotowej śmigła bocznego}
-Następnie zbadano wpływ prędkości obrotowej silnika na napięcie podawane na silnik dl osi pionowej. Podobnie jak dla osi poziomej, większa prędkość obrotowa powoduje większe opory, przez co mniejsze napięcie podawane jest na silnik. Opisuje to równanie \eqref{eq:domega_h}.
+Następnie zbadano wpływ prędkości obrotowej silnika na napięcie podawane na silnik dla osi pionowej. Podobnie jak dla osi poziomej, większa prędkość obrotowa powoduje większe opory, przez co mniejsze napięcie podawane jest na silnik. Opisuje to równanie \eqref{eq:domega_h}.
 \begin{equation}
 I_h\frac{d\omega_h}{dt} = u_h - H_h^{-1}(\omega_h)
 \label{eq:domega_h}
@@ -374,7 +374,7 @@ I_h\frac{d\omega_h}{dt} = u_h - H_h^{-1}(\omega_h)
 \(\omega_h\) jest prędkością obrotową silnika bocznego,\newline
 \(u_h\) jest współczynnikiem wypełniania sygnału PWM dla silnika bocznego.
 \paragraph*{}
-Pomiary wykonano są dla ustalonej prędkości obrotowej silnika, więc jej pochodne po czasie są równe \(0\). Stąd powyższe \eqref{eq:domega_h} przyjmuje następującą postać:
+Pomiary wykonano dla ustalonej prędkości obrotowej silnika, więc jej pochodne po czasie są równe \(0\). Stąd powyższe \eqref{eq:domega_h} przyjmuje następującą postać:
 \begin{equation}
 H_h^{-1}(\omega_h) = u_h
 \end{equation}
@@ -953,7 +953,7 @@ Postanowiono również sprawdzić jak klasyczny regulator PID poradzi sobie z za
 \end{table}
 
 Ze względu na to, że zadaniem pierwszego regulatora było jak najszybsze doprowadzenie obiektu w okolice wartości zadanej i wyeliminowanie oscylacji, to wartość wzmocnienia części różniczkującej jest większa niż w przypadku drugiego regulatora. Analogiczna zależność zachodzi dla regulatora nr 2 i części całkującej, której to wartości jest większa niż w pierwszym przypadku. \\
-Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie członu całkującego regulatora nr 2, w momencie gdy ten nie był aktywny. Na drodze przeprowadzonych eksperymentów  ustalono, że najlepiej będzie podawać na ten regulator 0.1 wartości uchybu sytuacji gdy jest on nieaktywny. Dzięki temu człon całkujący nie osiągał aż tak dużej wartości, która wprowadziłaby do układu oscylacje, i jednocześnie generował na tyle duże sterowanie, że układ był sprowadzany do zadanej pozycji od momentu aktywacji regulatora.  Na rysunku \ref{fig:PID_30} zaprezentowano działanie całego układu.
+Głównym problemem w projektowaniu tego układu było odpowiednie ograniczenie członu całkującego regulatora nr 2, w momencie gdy ten nie był aktywny. Na drodze przeprowadzonych eksperymentów  ustalono, że najlepiej będzie podawać na ten regulator 0.1 wartości uchybu w sytuacji, gdy jest on nieaktywny. Dzięki temu człon całkujący nie osiągał aż tak dużej wartości, która wprowadziłaby do układu oscylacje, i jednocześnie generował na tyle duże sterowanie, że układ był sprowadzany do zadanej pozycji od momentu aktywacji regulatora.  Na rysunku \ref{fig:PID_30} zaprezentowano działanie całego układu.
 
 \begin{figure}[H]
 	\centering
